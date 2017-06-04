@@ -2,7 +2,6 @@ package com.sbkchat.collaboration.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,7 +28,7 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.SEQUENCE , generator ="generator")
 	@SequenceGenerator(name = "generator", sequenceName = "users_seq", allocationSize=1)
 	@Column(name="user_id")
-	private Long id; 
+	private int id; 
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -65,11 +64,11 @@ public class User implements Serializable{
 	
 	private boolean enabled;
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

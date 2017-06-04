@@ -41,6 +41,7 @@ no_of_likes NUMBER(5),
 no_of_comments NUMBER(5),
 no_of_views NUMBER(5),
 user_id NUMBER(8,0),
+username VARCHAR2(50) not null,
 
 CONSTRAINT pk_blog_blog_id PRIMARY KEY (blog_id),
 CONSTRAINT fk_blog_user_id FOREIGN KEY (user_id) REFERENCES USER_DETAILS (user_id)

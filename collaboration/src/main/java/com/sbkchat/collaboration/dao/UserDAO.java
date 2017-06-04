@@ -16,7 +16,7 @@ public interface UserDAO {
 	boolean deleteUser(User user);
 	
 	//get the user
-	User getUser(Long id);
+	User getUser(int id);
 	
 	// for validating user
 	User validateUser(User user);
@@ -25,7 +25,7 @@ public interface UserDAO {
 	User getUserByUserName(String username);
 	
 	//update user profile
-	boolean updateUserProfile(String fileName, Long id);
+	boolean updateUserProfile(String fileName, int id);
 	
 	//list of user
 	List<User> list();
@@ -34,5 +34,5 @@ public interface UserDAO {
 	List<User> list(String status);
 	
 	// List of (fetch) online User Friends
-	List<User> fetchOnlineFriends(Long id);
+	List<User> fetchOnlineFriends(int id);
 }

@@ -54,7 +54,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User getUser(Long id) {
+	public User getUser(int id) {
 		
 		return sessionFactory.getCurrentSession().get(User.class, id);
 	}
@@ -94,7 +94,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean updateUserProfile(String fileName, Long id) {
+	public boolean updateUserProfile(String fileName, int id) {
 		
 		String selectQuery = "UPDATE User SET profile = :filename WHERE id = :id";
 		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
@@ -127,7 +127,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<User> fetchOnlineFriends(Long id) {
+	public List<User> fetchOnlineFriends(int id) {
 		
 		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID IN "
 				+ "(SELECT INITIATOR_ID FROM FRIENDS_LIST WHERE (FRIEND_ID = :id OR INITIATOR_ID = :id) AND STATUS = 'APPROVED' "
