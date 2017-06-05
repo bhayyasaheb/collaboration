@@ -78,7 +78,7 @@ public class BlogTestCase {
 		assertEquals("failed to get the list of blog by user id!",6, size);
 	}
 	
-	/*@Test
+	@Test
 	public void fetchBlogList()
 	{
 		List<Blog> bloglist =blogDAO.mainList();
@@ -87,8 +87,8 @@ public class BlogTestCase {
 		{
 			System.out.println(b1.getNoOfViews());
 		}
-		assertEquals("Failed to get list of blog by view!",5, blogDAO.mainList().size());
-	}*/
+		assertEquals("Failed to get list of blog by view!",3, blogDAO.mainList().size());
+	}
 }
 
 
