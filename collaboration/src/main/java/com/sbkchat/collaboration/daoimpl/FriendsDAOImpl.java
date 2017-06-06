@@ -6,12 +6,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sbkchat.collaboration.dao.FriendsDAO;
 import com.sbkchat.collaboration.dto.Friends;
 import com.sbkchat.collaboration.dto.User;
 
 @Repository("friendsDAO")
+@Transactional
 public class FriendsDAOImpl implements FriendsDAO {
 
 	@Autowired
@@ -54,7 +56,7 @@ public class FriendsDAOImpl implements FriendsDAO {
 	}
 
 	@Override
-	public Friends getFriend(Long id) {
+	public Friends getFriend(int id) {
 		
 		return sessionFactory.getCurrentSession().get(Friends.class, id);
 	}
@@ -68,7 +70,7 @@ public class FriendsDAOImpl implements FriendsDAO {
 	}
 
 	@Override
-	public List<Friends> list(Long id) {
+	public List<Friends> list(int id) {
 		
 		String selectQuery = "FROM Friends where friendId = :id";
 		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
@@ -85,7 +87,7 @@ public class FriendsDAOImpl implements FriendsDAO {
 	}
 
 	@Override
-	public List<User> myFriends(Long id) {
+	public List<User> myFriends(int id) {
 		
 		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID IN "
 				+ "(SELECT INITIATOR_ID FROM FRIENDS_LIST WHERE (FRIEND_ID = :id OR INITIATOR_ID = :id) AND STATUS = 'APPROVED'"
@@ -98,7 +100,7 @@ public class FriendsDAOImpl implements FriendsDAO {
 	}
 
 	@Override
-	public List<User> noFriends(Long id) {
+	public List<User> noFriends(int id) {
 		
 		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID NOT IN "
 				+ "(SELECT INITIATOR_ID FROM FRIENDS_LIST WHERE FRIEND_ID = :id OR INITIATOR_ID = :id "

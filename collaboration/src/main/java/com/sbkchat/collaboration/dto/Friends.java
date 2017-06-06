@@ -3,11 +3,18 @@ package com.sbkchat.collaboration.dto;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
+@Entity
+@Component
+@Table(name="friends_list")
 public class Friends implements Serializable{
 
 	/**
@@ -18,37 +25,37 @@ public class Friends implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="generator")
 	@SequenceGenerator(name = "generator", sequenceName="friend_list_seq",allocationSize=1)
-	private Long id;
+	private int id;
 	
 	@Column(name = "initiator_id")
-	private Long initiatorId;
+	private int initiatorId;
 	
 	@Column(name = "friend_id")
-	private Long friendId;
+	private int friendId;
 	
 	private String status;
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public Long getInitiatorId() {
+	public int getInitiatorId() {
 		return initiatorId;
 	}
 
-	public void setInitiatorId(Long initiatorId) {
+	public void setInitiatorId(int initiatorId) {
 		this.initiatorId = initiatorId;
 	}
 
-	public Long getFriendId() {
+	public int getFriendId() {
 		return friendId;
 	}
 
-	public void setFriendId(Long friendId) {
+	public void setFriendId(int friendId) {
 		this.friendId = friendId;
 	}
 

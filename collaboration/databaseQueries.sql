@@ -157,6 +157,70 @@ CONSTRAINT pK_JOB_DETAIL_JOB_ID PRIMARY KEY (JOB_ID),
 CONSTRAINT fk_JOB_DETAIL_USER_ID FOREIGN KEY (USER_ID) REFERENCES USER_DETAILS(USER_ID)
 );
 
+
+create SEQUENCE job_applied_seq
+START WITH 1000
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+
+create table job_applied
+(
+applied_id NUMBER(8,0),
+job_id NUMBER(8,0) not null,
+user_id NUMBER(8,0) not null,
+user_name VARCHAR2(50) not null,
+applied_date DATE default SYSDATE,
+status VARCHAR2(50) default 'PENDING' not null,
+
+CONSTRAINT pk_JOB_APPLIED_APPLIED_ID PRIMARY KEY(APPLIED_ID),
+CONSTRAINT fk_JOB_APPLIED_JOB_ID FOREIGN KEY(JOB_ID) REFERENCES JOB_DETAIL(JOB_ID),
+CONSTRAINT fk_JOB_APPLIED_USER_ID FOREIGN KEY(USER_ID) REFERENCES USER_DETAILS(USER_ID)
+);
+
+create SEQUENCE events_seq
+START WITH 1000
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+
+create table Events
+(
+event_id NUMBER(8,0),
+user_id NUMBER(8,0) not null,
+user_name VARCHAR2(50) not null,
+event_name VARCHAR2(255) not null,
+venue VARCHAR2(100) not null,
+description CLOB not null,
+status VARCHAR2(50) default 'PENDING' not null,
+start_date DATE not null,
+end_date DATE not null,
+post_date DATE default sysDate,
+
+CONSTRAINT  pk_EVENTS_EVENT_ID PRIMARY KEY (EVENT_ID),
+CONSTRAINT fk_EVENTS_USER_ID FOREIGN KEY (USER_ID) REFERENCES USER_DETAILS(USER_ID)
+);
+
+create SEQUENCE event_join_seq 
+START WITH 1000
+INCREMENT BY 1
+NOCACHE
+NOCYCLE;
+
+create table event_joined
+(
+joined_id NUMBER(8,0),
+event_id NUMBER(8,0) not null,
+user_id NUMBER(8,0) not null,
+user_name VARCHAR2(50) not null,
+joined_date DATE default sysDate,
+status VARCHAR2(50) default 'PENDING' not null,
+
+CONSTRAINT pk_EVENT_JOINED_JOINED_ID PRIMARY KEY (JOINED_ID),
+CONSTRAINT fk_EVENT_JOINED_EVENT_ID FOREIGN KEY (EVENT_ID) REFERENCES EVENTS (EVENT_ID),
+CONSTRAINT fk_EVENT_JOINED_USER_ID FOREIGN KEY (USER_ID) REFERENCES USER_DETAILS (USER_ID)
+);
+
 create SEQUENCE friend_list_seq
 START WITH 1000
 INCREMENT BY 1
@@ -172,13 +236,5 @@ status VARCHAR(50) default 'PENDING' not null,
 
 CONSTRAINT pk_FRIENDS_LIST_ID PRIMARY KEY (ID)
 );
-
-
-
-
-
-
-
-
 
 
