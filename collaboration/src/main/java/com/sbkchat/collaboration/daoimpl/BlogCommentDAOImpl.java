@@ -60,7 +60,7 @@ public class BlogCommentDAOImpl implements BlogCommentDAO{
 	@Override
 	public List<BlogComment> list(int id) {
 		
-		String selectQuery = "FROM BlogComment where blogId= '"+id+"'";
+		String selectQuery = "FROM BlogComment where blog= '"+id+"'";
 		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
 		return query.list();
 		

@@ -2,19 +2,26 @@ package com.sbkchat.collaboration.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Component
-public class Blog implements Serializable{
+public class Blog extends Status implements Serializable{
 	/**
 	 * 
 	 */
@@ -32,6 +39,7 @@ public class Blog implements Serializable{
 	private String status;
 	
 	@Column(name= "create_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private LocalDate createDate;
 	
 	private String description;
@@ -49,6 +57,18 @@ public class Blog implements Serializable{
 	private int userId;
 	
 	private String username;
+	
+	@OneToMany(mappedBy="blog",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JsonManagedReference
+	private List<BlogComment> blogCommnet;
+
+	public List<BlogComment> getBlogCommnet() {
+		return blogCommnet;
+	}
+
+	public void setBlogCommnet(List<BlogComment> blogCommnet) {
+		this.blogCommnet = blogCommnet;
+	}
 
 	public int getId() {
 		return id;

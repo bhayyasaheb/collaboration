@@ -63,13 +63,28 @@ public class UserTestCase {
 		assertEquals("Failed to updated User!",true, userDAO.updateUser(user));
 	}*/
 	
-	@Test
+	/*@Test
 	public void deleteUserTestCase()
 	{
 		user = userDAO.getUser(1005);
 		
 		assertEquals("Failed to delete User! ", true, userDAO.deleteUser(user));
 		
+	}*/
+	
+	@Test
+	public void getUser()
+	{
+		assertEquals("Failed to get the user!","Koke", userDAO.getUser(1000).getLastName());
+	}
+	
+	@Test
+	public void validateUser()
+	{
+		user.setUsername("Bhayyasaheb");
+		user.setPassword("SBK@123");
+		
+		assertEquals("Failed to validate User!","Bhayyasaheb",userDAO.validateUser(user).getUsername());
 	}
 	
 	@Test
@@ -77,14 +92,19 @@ public class UserTestCase {
 	{
 		int size = userDAO.list("APPROVED").size();
 		
-		assertEquals("Failed to get the all User!",4,size);
+		assertEquals("Failed to get the all User!",5,size);
 	}
 	
 	@Test
 	public void getAllUser()
 	{
-		//int size  = userDAO.list().size();
-		assertEquals("Failed to get the User!",4, userDAO.list().size());
+		assertEquals("Failed to get the User!",5, userDAO.list().size());
+	}
+	
+	@Test
+	public void getUserByUserName()
+	{
+		assertEquals("Failed to get the user by user Name!","Bhayyasaheb",userDAO.getUserByUserName("Bhayyasaheb").getUsername());
 	}
 }
 

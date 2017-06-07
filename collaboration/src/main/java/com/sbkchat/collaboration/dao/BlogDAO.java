@@ -27,5 +27,6 @@ public interface BlogDAO {
     // get list of  blog by user id
     List<Blog> getUsersBlog(int id);
     
+    // get blog list where status ="APPROVED" by order of no of views
     List<Blog> mainList();
 }

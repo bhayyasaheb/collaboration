@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-//@EnableWebMvc
+@EnableWebMvc
 @ComponentScan(basePackages = "com.sbkchat.collaboration")
 public class MvcConfig extends WebMvcConfigurerAdapter{
 

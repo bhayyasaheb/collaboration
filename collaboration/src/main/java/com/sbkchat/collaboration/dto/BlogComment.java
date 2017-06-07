@@ -8,10 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Component
@@ -29,10 +34,13 @@ public class BlogComment implements Serializable{
 	@Column(name="blog_cid")
 	private int id;
 	
-	@Column(name="blog_id")
-	private int blogId;
+	@ManyToOne
+	@JoinColumn(name="blog_id")
+	@JsonBackReference
+	private Blog blog;
 	
 	@Column(name="comment_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private LocalDate commentDate;
 	
 	@Column(name="user_id")
@@ -57,13 +65,13 @@ public class BlogComment implements Serializable{
 		this.id = id;
 	}
 
-	public int getBlogId() {
+	/*public int getBlogId() {
 		return blogId;
 	}
 
 	public void setBlogId(int blogId) {
 		this.blogId = blogId;
-	}
+	}*/
 
 	public LocalDate getCommentDate() {
 		return commentDate;
@@ -113,12 +121,14 @@ public class BlogComment implements Serializable{
 		this.blogComment = blogComment;
 	}
 
-	@Override
-	public String toString() {
-		return "BlogComments [id=" + id + ", blogId=" + blogId + ", commentDate=" + commentDate + ", userId=" + userId
-				+ ", username=" + username + ", userProfileId=" + userProfileId + ", title=" + title + ", blogComment="
-				+ blogComment + "]";
+	public Blog getBlog() {
+		return blog;
 	}
+
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
+
 	
 	
 }

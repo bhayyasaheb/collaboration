@@ -14,10 +14,12 @@ import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Component
 @Table(name="user_details")
-public class User implements Serializable{
+public class User extends Status implements Serializable{
 
 	/**
 	 * 
@@ -47,6 +49,7 @@ public class User implements Serializable{
 	private String emailId;
 	
 	@Column(name="birth_date")
+	@JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private LocalDate birthDate;
 	
 	private char gender;
