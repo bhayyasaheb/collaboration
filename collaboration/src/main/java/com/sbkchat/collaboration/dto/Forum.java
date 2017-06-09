@@ -2,15 +2,22 @@ package com.sbkchat.collaboration.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Component
@@ -38,6 +45,7 @@ public class Forum implements Serializable{
 	private int noOfPosts;
 	
 	@Column(name="create_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private LocalDate createDate;
 	
 	@Column(name="user_id")
@@ -45,6 +53,20 @@ public class Forum implements Serializable{
 	
 	@Column(name="user_name")
 	private String userName;
+	
+	@OneToMany(mappedBy="forum",fetch=FetchType.EAGER,cascade= CascadeType.ALL)
+	@JsonManagedReference
+	private List<ForumPost> forumPost;
+	
+	
+
+	public List<ForumPost> getForumPost() {
+		return forumPost;
+	}
+
+	public void setForumPost(List<ForumPost> forumPost) {
+		this.forumPost = forumPost;
+	}
 
 	public int getId() {
 		return id;

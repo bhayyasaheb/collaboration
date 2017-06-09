@@ -2,15 +2,23 @@ package com.sbkchat.collaboration.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 @Entity
 @Component
@@ -43,13 +51,28 @@ public class Events implements Serializable{
 	private String status;
 	
 	@Column(name="start_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private LocalDate startDate;
 	
 	@Column(name="end_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private LocalDate endDate;
 	
 	@Column(name="post_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private LocalDate postDate;
+	
+	@OneToMany(mappedBy="events",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JsonManagedReference
+	private List<EventJoined> eventJoined;
+
+	public List<EventJoined> getEventJoined() {
+		return eventJoined;
+	}
+
+	public void setEventJoined(List<EventJoined> eventJoined) {
+		this.eventJoined = eventJoined;
+	}
 
 	public int getId() {
 		return id;

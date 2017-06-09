@@ -8,10 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Component
@@ -29,8 +34,10 @@ public class JobApplied implements Serializable{
 	@Column(name="applied_id")
 	private int id;
 	
-	@Column(name="job_id")
-	private int jobId;
+	@ManyToOne
+	@JoinColumn(name="job_id")
+	@JsonBackReference
+	private Job job;
 	
 	@Column(name="user_id")
 	private int userId;
@@ -39,6 +46,7 @@ public class JobApplied implements Serializable{
 	private String userName;
 	
 	@Column(name="applied_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private LocalDate appliedDate;
 	
 	private String status;
@@ -51,12 +59,20 @@ public class JobApplied implements Serializable{
 		this.id = id;
 	}
 
-	public int getJobId() {
+	/*public int getJobId() {
 		return jobId;
 	}
 
 	public void setJobId(int jobId) {
 		this.jobId = jobId;
+	}*/
+
+	public Job getJob() {
+		return job;
+	}
+
+	public void setJob(Job job) {
+		this.job = job;
 	}
 
 	public int getUserId() {
@@ -91,11 +107,7 @@ public class JobApplied implements Serializable{
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "JobApplied [id=" + id + ", jobId=" + jobId + ", userId=" + userId + ", userName=" + userName
-				+ ", appliedDate=" + appliedDate + ", status=" + status + "]";
-	}
+	
 	
 	
 }

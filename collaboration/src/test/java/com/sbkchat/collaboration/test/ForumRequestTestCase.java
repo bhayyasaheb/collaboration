@@ -7,7 +7,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.sbkchat.collaboration.dao.ForumDAO;
 import com.sbkchat.collaboration.dao.ForumRequestDAO;
+import com.sbkchat.collaboration.dto.Forum;
 import com.sbkchat.collaboration.dto.ForumRequest;
 
 public class ForumRequestTestCase {
@@ -21,6 +23,12 @@ public class ForumRequestTestCase {
 	@Autowired
 	private static ForumRequestDAO forumRequestDAO;
 	
+	@Autowired
+	private static ForumDAO forumDAO;
+	
+	@Autowired
+	private static Forum forum;
+	
 	@BeforeClass
 	public static void init()
 	{
@@ -30,26 +38,29 @@ public class ForumRequestTestCase {
 		
 		forumRequest = (ForumRequest)context.getBean("forumRequest");
 		forumRequestDAO = (ForumRequestDAO)context.getBean("forumRequestDAO");
+		forum = (Forum) context.getBean("forum");
+		forumDAO = (ForumDAO) context.getBean("forumDAO");
 	}
 	
 	/*@Test
 	public void forumRequestTestCase()
 	{
-		forumRequest.setForumId(1003);
+		forum = forumDAO.getForum(1006);
+		forumRequest.setForum(forum);
 		forumRequest.setUserId(1002);
 		forumRequest.setUserName("Mahesh");
 		forumRequest.setStatus("PENDING");
 		
 		assertEquals("Failed add the forumrequest!",true,forumRequestDAO.addForumRequest(forumRequest));
 		
-		forumRequest = forumRequestDAO.getForumRequest(1002);
-		forumRequest.setStatus("APPROVED");
+		//forumRequest = forumRequestDAO.getForumRequest(1002);
+		//forumRequest.setStatus("APPROVED");
 		
-		assertEquals("Failed to update forum request!",true, forumRequestDAO.updateForumRequest(forumRequest));
+		//assertEquals("Failed to update forum request!",true, forumRequestDAO.updateForumRequest(forumRequest));
 		
-		assertEquals("Failed to delete Forum request!",true, forumRequestDAO.deleteForumRequest(forumRequest));
+		//assertEquals("Failed to delete Forum request!",true, forumRequestDAO.deleteForumRequest(forumRequest));
 		
-		assertEquals("Failed to get the Forum request!",1000, forumRequestDAO.getForumRequest(1000).getUserId());
+		//assertEquals("Failed to get the Forum request!",1000, forumRequestDAO.getForumRequest(1000).getUserId());
 	}*/
 	
 	@Test
@@ -57,7 +68,7 @@ public class ForumRequestTestCase {
 	{
 		int size = forumRequestDAO.list().size();
 		
-		assertEquals("Failed to get the list of forum request!",3, size);
+		assertEquals("Failed to get the list of forum request!",6, size);
 	}
 	
 	@Test
@@ -73,6 +84,6 @@ public class ForumRequestTestCase {
 	{
 		int size = forumRequestDAO.list("PENDING").size();
 		
-		assertEquals("Failed to get the list of forumrequest by status",1, size);
+		assertEquals("Failed to get the list of forumrequest by status",2, size);
 	}
 }

@@ -8,10 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Component
@@ -29,8 +34,10 @@ public class ForumPost implements Serializable{
 	@Column(name="forum_pid")
 	private int id;
 	
-	@Column(name="forum_id")
-	private int forumId;
+	@ManyToOne
+	@JoinColumn(name="forum_id")
+	@JsonBackReference
+	private Forum forum;
 	
 	@Column(name="user_id")
 	private int userId;
@@ -47,6 +54,7 @@ public class ForumPost implements Serializable{
 	private String description;
 	
 	@Column(name="post_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
 	private LocalDate postDate;
 
 	public int getId() {
@@ -57,13 +65,13 @@ public class ForumPost implements Serializable{
 		this.id = id;
 	}
 
-	public int getForumId() {
+	/*public int getForumId() {
 		return forumId;
 	}
 
 	public void setForumId(int forumId) {
 		this.forumId = forumId;
-	}
+	}*/
 
 	public int getUserId() {
 		return userId;
@@ -113,12 +121,15 @@ public class ForumPost implements Serializable{
 		this.postDate = postDate;
 	}
 
-	@Override
-	public String toString() {
-		return "ForumPost [id=" + id + ", forumId=" + forumId + ", userId=" + userId + ", userName=" + userName
-				+ ", userProfileId=" + userProfileId + ", title=" + title + ", description=" + description
-				+ ", postDate=" + postDate + "]";
+	public Forum getForum() {
+		return forum;
 	}
+
+	public void setForum(Forum forum) {
+		this.forum = forum;
+	}
+
+	
 	
 	
 }

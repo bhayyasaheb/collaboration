@@ -2,16 +2,23 @@ package com.sbkchat.collaboration.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Component
@@ -49,6 +56,7 @@ public class Job implements Serializable{
 	private String status;
 	
 	@Column(name="post_date")
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	private LocalDate postDate;
 	
 	@Column(name="user_id")
@@ -56,6 +64,18 @@ public class Job implements Serializable{
 	
 	@Column(name="user_name")
 	private String userName;
+	
+	@OneToMany(mappedBy="job",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JsonManagedReference
+	private List<JobApplied> jobApplied;
+
+	public List<JobApplied> getJobApplied() {
+		return jobApplied;
+	}
+
+	public void setJobApplied(List<JobApplied> jobApplied) {
+		this.jobApplied = jobApplied;
+	}
 
 	public int getId() {
 		return id;

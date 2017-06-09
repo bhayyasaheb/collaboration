@@ -58,7 +58,7 @@ public class Blog extends Status implements Serializable{
 	
 	private String username;
 	
-	@OneToMany(mappedBy="blog",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="blog", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JsonManagedReference
 	private List<BlogComment> blogCommnet;
 

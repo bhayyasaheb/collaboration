@@ -106,6 +106,14 @@ public class UserTestCase {
 	{
 		assertEquals("Failed to get the user by user Name!","Bhayyasaheb",userDAO.getUserByUserName("Bhayyasaheb").getUsername());
 	}
+	
+	@Test
+	public void fetchOnlineFriends()
+	{
+		int size = userDAO.fetchOnlineFriends(1000).size();
+		
+		assertEquals("Failed to get the Online Friends list!",2, size);
+	}
 }
 
 

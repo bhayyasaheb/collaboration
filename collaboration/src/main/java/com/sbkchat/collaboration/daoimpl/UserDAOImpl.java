@@ -89,8 +89,9 @@ public class UserDAOImpl implements UserDAO {
 			return (User) query.getSingleResult();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+			return null;
 		}
-		return null;
+		
 	}
 
 	@Override
@@ -130,8 +131,8 @@ public class UserDAOImpl implements UserDAO {
 	public List<User> fetchOnlineFriends(int id) {
 		
 		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID IN "
-				+ "(SELECT INITIATOR_ID FROM FRIENDS_LIST WHERE (FRIEND_ID = :id OR INITIATOR_ID = :id) AND STATUS = 'APPROVED' "
-				+ "UNION SELECT FRIEND_ID FROM FRIENDS_LIST WHERE (FRIEND_ID = :id OR INITIATOR_ID = :id) AND STATUS = 'APPROVED')"
+				+ "(SELECT INITIATOR_ID FROM FRIENDS_LIST WHERE (FRIEND_ID = :id) AND STATUS = 'APPROVED' "
+				+ "UNION SELECT FRIEND_ID FROM FRIENDS_LIST WHERE (INITIATOR_ID = :id) AND STATUS = 'APPROVED')"
 				+ " AND IS_ONLINE = 1";
 		
 		return sessionFactory

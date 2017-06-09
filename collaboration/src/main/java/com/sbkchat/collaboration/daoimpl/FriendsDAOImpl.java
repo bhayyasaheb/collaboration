@@ -90,8 +90,8 @@ public class FriendsDAOImpl implements FriendsDAO {
 	public List<User> myFriends(int id) {
 		
 		String selectQuery = "SELECT * FROM USER_DETAILS WHERE USER_ID IN "
-				+ "(SELECT INITIATOR_ID FROM FRIENDS_LIST WHERE (FRIEND_ID = :id OR INITIATOR_ID = :id) AND STATUS = 'APPROVED'"
-				+ " UNION SELECT FRIEND_ID FROM FRIENDS_LIST WHERE (FRIEND_ID = :id OR INITIATOR_ID = :id) AND STATUS = 'APPROVED')";
+				+ "(SELECT INITIATOR_ID FROM FRIENDS_LIST WHERE (FRIEND_ID = :id) AND STATUS = 'APPROVED'"
+				+ " UNION SELECT FRIEND_ID FROM FRIENDS_LIST WHERE (INITIATOR_ID = :id) AND STATUS = 'APPROVED')";
 		return sessionFactory
 				.getCurrentSession()
 				.createNativeQuery(selectQuery, User.class)

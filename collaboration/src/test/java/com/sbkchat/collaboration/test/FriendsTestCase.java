@@ -59,15 +59,15 @@ public class FriendsTestCase {
 	{
 		int size = friendsDAO.list().size();
 		
-		assertEquals("Failed to get the list of friends!",5, size);
+		assertEquals("Failed to get the list of friends!",4, size);
 	}
 	
 	@Test
 	public void getFrinedListByFriend()
 	{
-		int size = friendsDAO.list(1004).size();
+		int size = friendsDAO.list(1001).size();
 		
-		assertEquals("failed to get the list of friend by friend",2,size);
+		assertEquals("failed to get the list of friend by friend",1,size);
 	}
 	
 	@Test
@@ -81,9 +81,9 @@ public class FriendsTestCase {
 	@Test
 	public void testNoFriends()
 	{
-		List<User> users = friendsDAO.noFriends(1003);
+		List<User> users = friendsDAO.noFriends(1000);
 		
-		assertEquals("Failed to get list  no friends!",2, users.size());
+		assertEquals("Failed to get list  no friends!",1, users.size());
 	}
 	
 	@Test

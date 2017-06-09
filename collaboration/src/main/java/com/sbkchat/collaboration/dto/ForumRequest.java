@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -28,8 +30,9 @@ public class ForumRequest implements Serializable{
 	@Column(name="request_id")
 	private int id;
 	
-	@Column(name="forum_id")
-	private int forumId;
+	@ManyToOne
+	@JoinColumn(name="forum_id")
+	private Forum forum;
 	
 	@Column(name="user_id")
 	private int userId;
@@ -47,13 +50,13 @@ public class ForumRequest implements Serializable{
 		this.id = id;
 	}
 
-	public int getForumId() {
+	/*public int getForumId() {
 		return forumId;
 	}
 
 	public void setForumId(int forumId) {
 		this.forumId = forumId;
-	}
+	}*/
 
 	public int getUserId() {
 		return userId;
@@ -79,11 +82,15 @@ public class ForumRequest implements Serializable{
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "ForumRequest [id=" + id + ", forumId=" + forumId + ", userId=" + userId + ", userName=" + userName
-				+ ", status=" + status + "]";
+	public Forum getForum() {
+		return forum;
 	}
+
+	public void setForum(Forum forum) {
+		this.forum = forum;
+	}
+
+	
 	
 	
 }

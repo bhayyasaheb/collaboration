@@ -8,10 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Component
@@ -29,16 +34,19 @@ public class EventJoined implements Serializable{
 	@Column(name="joined_id")
 	private int id;
 	
-	@Column(name="event_id")
-	private int eventId;
+	@ManyToOne
+	@JoinColumn(name="event_id")
+	@JsonBackReference
+	private Events events;
 	
 	@Column(name="user_id")
 	private int userId;
 	
 	@Column(name="user_name")
 	private String userName;
-	
+	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	@Column(name="joined_date")
+	
 	private LocalDate joinedDate;
 	
 	private String status;
@@ -51,13 +59,13 @@ public class EventJoined implements Serializable{
 		this.id = id;
 	}
 
-	public int getEventId() {
+	/*public int getEventId() {
 		return eventId;
 	}
 
 	public void setEventId(int eventId) {
 		this.eventId = eventId;
-	}
+	}*/
 
 	public int getUserId() {
 		return userId;
@@ -91,11 +99,15 @@ public class EventJoined implements Serializable{
 		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "EventJoined [id=" + id + ", eventId=" + eventId + ", userId=" + userId + ", userName=" + userName
-				+ ", joinedDate=" + joinedDate + ", status=" + status + "]";
+	public Events getEvents() {
+		return events;
 	}
+
+	public void setEvents(Events events) {
+		this.events = events;
+	}
+
+	
 	
 	
 }

@@ -116,9 +116,9 @@ public class UserController {
 	// method to get user by user name
 	
 	@RequestMapping(value="/checkUser",method=RequestMethod.POST)
-	public ResponseEntity<String> checkUser(@RequestBody String username)
+	public ResponseEntity<String> checkUser(@RequestBody User username)
 	{
-		User exitingUser = userDAO.getUserByUserName(username);
+		User exitingUser = userDAO.getUserByUserName(username.getUsername());
 		if (exitingUser == null)
 		{
 			return new ResponseEntity<String>("User Does Not Exits!",HttpStatus.NOT_FOUND);
