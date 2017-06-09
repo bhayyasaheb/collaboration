@@ -20,6 +20,7 @@ import com.sbkchat.collaboration.dto.Events;
 import com.sbkchat.collaboration.dto.ForumRequest;
 import com.sbkchat.collaboration.dto.Job;
 import com.sbkchat.collaboration.dto.User;
+import com.sbkchat.collaboration.service.EmailService;
 
 @RestController
 public class RequestController {
@@ -38,6 +39,9 @@ public class RequestController {
 	
 	@Autowired
 	private JobDAO jobDAO;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	// method for fetching pending user list by status
 	
@@ -65,6 +69,8 @@ public class RequestController {
 		userDAO.updateUser(user);
 		
 		// add method when user approved then send email to user
+		
+		emailService.approvedUserMessage(user);
 		
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}

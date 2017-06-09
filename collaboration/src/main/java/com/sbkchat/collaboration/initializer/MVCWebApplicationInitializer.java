@@ -2,6 +2,7 @@ package com.sbkchat.collaboration.initializer;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import com.sbkchat.collaboration.config.EmailConfig;
 import com.sbkchat.collaboration.config.HibernateConfig;
 import com.sbkchat.collaboration.config.MvcConfig;
 
@@ -10,7 +11,7 @@ public class MVCWebApplicationInitializer extends AbstractAnnotationConfigDispat
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		
-		return new Class[] {HibernateConfig.class};
+		return new Class[] {HibernateConfig.class, EmailConfig.class};
 	}
 
 	@Override
