@@ -112,4 +112,25 @@ public class FriendsDAOImpl implements FriendsDAO {
 				.getResultList();
 	}
 
+	/*@Override
+	public Friends getFriendsStatus(int initiatorId, int friendId) {
+		
+		String selectQuery = "SELECT from Friends Where initiatorId = :initiatorId  and  friendId = :friendId";
+		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
+		query.setParameter("initiatorId", initiatorId);
+		query.setParameter("friendId", friendId);
+		query.getSingleResult();
+		return  (Friends) query;
+	}*/
+
+	/*@Override
+	public Friends getFriendByStatus(int initiatorId,int friendId ) {
+		String selectQuery = "SELECT from Friends Where FriendId = :id and ";
+		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
+		query.setParameter("id", id);
+		query.setParameter("status", "APPROVED");
+		query.getSingleResult();
+		return (Friends) query;
+	}*/
+
 }

@@ -89,9 +89,38 @@ public class JobController {
 		return new ResponseEntity<List<Job>>(jobList, HttpStatus.OK);
 	}
 	
-	// method for applying job
+	// method for applying job by passing job id in url and user in body
 	
 	@RequestMapping(value="job/apply/{id}",method=RequestMethod.POST)
+	public ResponseEntity<JobApplied> applyJob(@PathVariable("id") int id,@RequestBody User user)
+	{
+		System.out.println("Starting of the method applyJob!");
+		
+		JobApplied jobApplied  = new JobApplied();
+		
+		user = userDAO.getUser(user.getId());
+		
+		jobApplied.setUserId(user.getId());
+		jobApplied.setUserName(user.getUsername());
+		
+		Job job = jobDAO.getJob(id);
+		
+		jobApplied.setJob(job);
+		
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDateTime now =  LocalDateTime.now();
+		
+		jobApplied.setAppliedDate(LocalDate.parse(dateFormat.format(now)));
+		jobApplied.setStatus("APPROVED");
+		
+		jobAppliedDAO.addJobApplied(jobApplied);
+		
+		System.out.println("Yoy are successfully Job joined!");
+		
+		return new ResponseEntity<JobApplied>(jobApplied, HttpStatus.OK);
+	}
+	
+	/*@RequestMapping(value="job/apply/{id}",method=RequestMethod.POST)
 	public ResponseEntity<JobApplied> applyJob(@PathVariable("id") int id,@RequestBody JobApplied jobApplied)
 	{
 		System.out.println("Starting of the method applyJob!");
@@ -119,7 +148,7 @@ public class JobController {
 		jobAppliedDAO.addJobApplied(jobApplied);
 		
 		return new ResponseEntity<JobApplied>(jobApplied, HttpStatus.OK);
-	}
+	}*/
 	
 	// method for fetching the user applied job list
 	

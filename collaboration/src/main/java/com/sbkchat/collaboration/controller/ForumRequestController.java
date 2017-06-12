@@ -31,9 +31,43 @@ public class ForumRequestController {
 	@Autowired
 	private UserDAO userDAO;
 	
-	// method to Join the Forum
+	// method to Join the Forum by passing forum id in url and user in body
 	
 	@RequestMapping(value="/forum/request/{id}",method=RequestMethod.POST)
+	public ResponseEntity<ForumRequest> addForumRequest(@PathVariable("id") int id, @RequestBody User user)
+	{
+		System.out.println("Adding ForumRequest!");
+		
+		ForumRequest forumRequest = new ForumRequest();
+		
+		//Forum forum = null;
+		
+		user = userDAO.getUser(user.getId());
+		
+		forumRequest.setUserId(user.getId());
+		forumRequest.setUserName(user.getUsername());
+		
+		Forum forum = forumDAO.getForum(id);
+		forumRequest.setForum(forum);
+		
+		if (user.getRole().equals("Super_Admin") || user.getRole().equals("Admin"))
+		{
+			forumRequest.setStatus("APPROVED");
+		} 
+		else 
+		{
+			forumRequest.setStatus("PENDING");
+		}
+		
+		forumRequestDAO.addForumRequest(forumRequest);
+		
+		System.out.println("Successfully added ForumRequest!");
+		
+		return new ResponseEntity<ForumRequest>(forumRequest,HttpStatus.OK);
+		
+	}
+	
+	/*@RequestMapping(value="/forum/request/{id}",method=RequestMethod.POST)
 	public ResponseEntity<ForumRequest> addForumRequest(@PathVariable("id") int id, @RequestBody ForumRequest forumRequest)
 	{
 		System.out.println("Adding ForumRequest!");
@@ -74,7 +108,7 @@ public class ForumRequestController {
 		
 		return new ResponseEntity<ForumRequest>(forumRequest,HttpStatus.OK);
 		
-	}
+	}*/
  	
 	// getting the list of participated user
 	

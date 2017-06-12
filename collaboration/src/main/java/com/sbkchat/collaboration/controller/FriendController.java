@@ -29,6 +29,25 @@ public class FriendController {
 	// method to send friend Friends 
 	
 	@RequestMapping(value="/user/friendRequest/{id}",method=RequestMethod.POST)
+	public ResponseEntity<Friends> sendFriendRequest(@PathVariable("id") int id,@RequestBody User user)
+	{
+		System.out.println("Starting of the method sendFriendRequest!");
+		
+		Friends friends = new Friends();
+		
+		user = userDAO.getUser(user.getId());
+		
+		friends.setFriendId(id);
+		friends.setInitiatorId(user.getId());
+		
+		friends.setStatus("PENDING");
+		
+		friendsDAO.addFriend(friends);
+		
+		return new ResponseEntity<Friends>(friends,HttpStatus.OK);
+	}
+	
+/*	@RequestMapping(value="/user/friendRequest/{id}",method=RequestMethod.POST)
 	public ResponseEntity<Friends> sendFriendRequest(@PathVariable("id") int id,@RequestBody Friends friends)
 	{
 		System.out.println("Starting of the method sendFriendRequest!");
@@ -43,7 +62,7 @@ public class FriendController {
 		friendsDAO.addFriend(friends);
 		
 		return new ResponseEntity<Friends>(friends,HttpStatus.OK);
-	}
+	}*/
 	
 	// method to fetch friend request
 	
@@ -68,9 +87,30 @@ public class FriendController {
 		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
 	}
 	
-	// method to to fetchApproved  friends Request
+	// method to  fetchApproved  friends Request to approve
 	
 	@RequestMapping(value="/user/friendRequest/approve/{id}",method=RequestMethod.POST)
+	public ResponseEntity<Friends> approveRequest(@PathVariable("id") int id,@RequestBody User user)
+	{
+		System.out.println("Starting of the method approveRequest!");
+		
+		List<Friends> friendList = friendsDAO.list(user.getId());
+		
+		//List<User> users = new ArrayList<>();
+		
+		for (Friends f1 : friendList)
+		{
+			if (f1.getInitiatorId() == id)
+			{
+				f1.setStatus("APPROVED");
+				friendsDAO.updateFriend(f1);
+			}
+		}
+		
+		return new ResponseEntity<Friends>(HttpStatus.OK);
+	}
+	
+	/*@RequestMapping(value="/user/friendRequest/approve/{id}",method=RequestMethod.POST)
 	public ResponseEntity<Friends> approveRequest(@PathVariable("id") int id,@RequestBody Friends friends)
 	{
 		System.out.println("Starting of the method approveRequest!");
@@ -91,7 +131,7 @@ public class FriendController {
 		}
 		
 		return new ResponseEntity<Friends>(HttpStatus.OK);
-	}
+	}*/
 	
 	// method to fetch FrinedsModel	that are not my friends
 	

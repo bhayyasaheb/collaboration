@@ -87,9 +87,39 @@ public class EventController {
 		return new ResponseEntity<List<Events>>(eventsList,HttpStatus.OK);
 	}
 	
-	// method for join the event
+	// method for join the event by passing event id in url and user in body
 	
 	@RequestMapping(value="/event/join/{id}",method=RequestMethod.POST)
+	public ResponseEntity<EventJoined> joinEvent(@PathVariable("id") int id,@RequestBody User user)
+	{
+		System.out.println("Starting of the method joinEvent!");
+		
+		EventJoined eventJoined = new EventJoined();
+		
+		user = userDAO.getUser(user.getId());
+		
+		eventJoined.setUserId(user.getId());
+		eventJoined.setUserName(user.getUsername());
+		
+		Events events = eventDAO.getEvent(id);
+		
+		eventJoined.setEvents(events);
+		
+		DateTimeFormatter dateFormat =  DateTimeFormatter.ofPattern("yyy-MM-dd");
+		LocalDateTime now = LocalDateTime.now();
+		
+		eventJoined.setJoinedDate(LocalDate.parse(dateFormat.format(now)));
+		
+		eventJoined.setStatus("APPROVED");
+		
+		eventJoinedDAO.addEventJoined(eventJoined);
+		
+		System.out.println("You are evnet joined Successfiully!");
+		
+		return new ResponseEntity<EventJoined>(eventJoined,HttpStatus.OK);
+	}
+	
+	/*@RequestMapping(value="/event/join/{id}",method=RequestMethod.POST)
 	public ResponseEntity<EventJoined> joinEvent(@PathVariable("id") int id,@RequestBody EventJoined eventJoined)
 	{
 		System.out.println("Starting of the method joinEvent!");
@@ -116,5 +146,5 @@ public class EventController {
 		eventJoinedDAO.addEventJoined(eventJoined);
 		
 		return new ResponseEntity<EventJoined>(eventJoined,HttpStatus.OK);
-	}
+	}*/
 }

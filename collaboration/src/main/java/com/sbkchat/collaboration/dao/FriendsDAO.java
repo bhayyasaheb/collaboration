@@ -34,4 +34,6 @@ public interface FriendsDAO {
 	// list of user for getting list that has no  friends for me
 	List<User> noFriends(int id);
 	
+	/*Friends getFriendsStatus(int initiatorId,int friendId);*/
+	
 }
