@@ -72,7 +72,7 @@ public class UserTestCase {
 		
 	}*/
 	
-	@Test
+	/*@Test
 	public void getUser()
 	{
 		assertEquals("Failed to get the user!","Koke", userDAO.getUser(1000).getLastName());
@@ -99,7 +99,7 @@ public class UserTestCase {
 	public void getAllUser()
 	{
 		assertEquals("Failed to get the User!",5, userDAO.list().size());
-	}
+	}*/
 	
 	@Test
 	public void getUserByUserName()
@@ -107,13 +107,13 @@ public class UserTestCase {
 		assertEquals("Failed to get the user by user Name!","Bhayyasaheb",userDAO.getUserByUserName("Bhayyasaheb").getUsername());
 	}
 	
-	@Test
+	/*@Test
 	public void fetchOnlineFriends()
 	{
 		int size = userDAO.fetchOnlineFriends(1000).size();
 		
 		assertEquals("Failed to get the Online Friends list!",2, size);
-	}
+	}*/
 }
 
 

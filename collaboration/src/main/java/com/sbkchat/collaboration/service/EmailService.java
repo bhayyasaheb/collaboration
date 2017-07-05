@@ -18,7 +18,7 @@ public class EmailService {
 	private JavaMailSender mailSender;
 	
 	// email name which is not similar to the user name
-	private static String from = "sbkChat";
+	private static String from = "sbkChatz";
 	
 	/**
 	 *  approvedUserMessage method will be called using emailService that can be Autowired
@@ -54,7 +54,7 @@ public class EmailService {
 			
 			// set the subject and recipient of mail
 			helper.setTo(user.getEmailId());
-			helper.setSubject("WELCOME TO SBKChat");
+			helper.setSubject("WELCOME TO SBKChatz");
 			helper.setFrom(from);
 			
 			// send the message

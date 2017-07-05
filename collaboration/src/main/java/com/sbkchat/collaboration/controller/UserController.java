@@ -1,7 +1,10 @@
 package com.sbkchat.collaboration.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,15 +14,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sbkchat.collaboration.dao.BlogDAO;
+import com.sbkchat.collaboration.dao.EventDAO;
+import com.sbkchat.collaboration.dao.EventJoinedDAO;
+import com.sbkchat.collaboration.dao.ForumDAO;
+import com.sbkchat.collaboration.dao.JobAppliedDAO;
+import com.sbkchat.collaboration.dao.JobDAO;
 import com.sbkchat.collaboration.dao.UserDAO;
+import com.sbkchat.collaboration.dto.Blog;
+import com.sbkchat.collaboration.dto.ContainModel;
+import com.sbkchat.collaboration.dto.EventJoined;
+import com.sbkchat.collaboration.dto.Events;
+import com.sbkchat.collaboration.dto.Forum;
+import com.sbkchat.collaboration.dto.Job;
+import com.sbkchat.collaboration.dto.JobApplied;
 import com.sbkchat.collaboration.dto.User;
+import com.sbkchat.collaboration.dto.UserModel;
 
 @RestController
 public class UserController {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private EventDAO eventDAO;
+	
+	@Autowired
+	private JobDAO jobDAO;
+	
+	@Autowired
+	private BlogDAO blogDAO;
+	
+	@Autowired
+	private EventJoinedDAO eventJoinedDAO;
+	
+	@Autowired
+	private JobAppliedDAO jobAppliedDAO;
+	
+	@Autowired
+	private ForumDAO forumDAO;
 		
+	
+	private static Logger log= LoggerFactory.getLogger(UserController.class);
+	
 	// method to get list of user by status ="APPROVED"
 	
 	@RequestMapping(value="users/list",method=RequestMethod.GET)
@@ -40,7 +78,7 @@ public class UserController {
 	public ResponseEntity<User> createUser(@RequestBody User user)
 	{
 		System.out.println("You are Going to register!");
-		
+		log.debug("Satrting of the method register");
 		user.setStatus("PENDING");
 		user.setEnabled(true);
 		user.setOnline(true);
@@ -48,14 +86,13 @@ public class UserController {
 		user.setRole("User");
 		
 		userDAO.addUser(user);
-		
+		log.info("Register Sucessfully!"+user);
 		System.out.println(user);
 		
 		return new ResponseEntity<User>(user,HttpStatus.OK);
 	}
 	
 	// method to update a existing user
-	
 	@RequestMapping(value="/update/{id}",method=RequestMethod.PUT)
 	public ResponseEntity<User> updateUser(@PathVariable("id") int id,@RequestBody User user)
 	{
@@ -68,29 +105,31 @@ public class UserController {
 	}
 	
 	// method to delete user
-	
-	@RequestMapping(value="/delete/{id}",method=RequestMethod.DELETE)
+	/*@RequestMapping(value="/delete/{id}",method=RequestMethod.DELETE)
 	public ResponseEntity<User> deleteUser(@PathVariable("id") int id)
 	{
 		User user = userDAO.getUser(id);
 		userDAO.deleteUser(user);
 		
 		return new ResponseEntity<User>(user,HttpStatus.OK);
-	}
+	}*/
 	
 	//method to validate user or for login
-	
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public ResponseEntity<User> validateUser(@RequestBody User user)
 	{
+		log.debug("starting of the method login");
+		
 		if(user.getUsername() != null && user.getPassword() != null)
 		{
+			log.debug("In Login method if username and password not null");
 			if(userDAO.validateUser(user) == null)
 			{
+				log.debug("Starting of the method validate");
 				user = new User();
 				user.setErrCode("204");
 				user.setErrMessage("Invalid Credentials");
-				
+				log.debug("Invalid Credentials Give Valid Credentials");
 				return new ResponseEntity<User>(user,HttpStatus.NO_CONTENT);
 			}
 			else
@@ -101,43 +140,146 @@ public class UserController {
 				user.setErrCode("200");
 				user.setErrMessage("You are Login Successfully!");
 				userDAO.updateUser(user);
-				
+				log.debug("You are Successfully Login!");
 				return new ResponseEntity<User>(user,HttpStatus.OK);
 			}
 		}
 		else
 		{
 			user = new User();
-			
+			log.debug("No Content availabel, Please give the username and passsword ");
 			return new ResponseEntity<User>(user,HttpStatus.NO_CONTENT);
 		}
 	}
 	
 	// method to get user by user name
-	
 	@RequestMapping(value="/checkUser",method=RequestMethod.POST)
-	public ResponseEntity<String> checkUser(@RequestBody User username)
+	public ResponseEntity<Void> checkUser(@RequestBody User username)
 	{
+		log.debug("starting of the Method CheckUser by Username");
 		User exitingUser = userDAO.getUserByUserName(username.getUsername());
 		if (exitingUser == null)
 		{
-			return new ResponseEntity<String>("User Does Not Exits!",HttpStatus.NOT_FOUND);
+			log.debug("UserName does not exits");
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		} 
 		else 
 		{
-			return new ResponseEntity<String>("User Exist",HttpStatus.FOUND);
+			log.info("Username is "+username);
+			log.debug("Username already exist in database");
+			return new ResponseEntity<Void>(HttpStatus.FOUND);
 		}
 	}
 	
 	// method to log out user and set online false
-	
 	@RequestMapping(value="/logout", method=RequestMethod.POST)
 	public ResponseEntity<String> toLogout(@RequestBody User user)
 	{
+		log.debug("Starting of the method Log out");
 		user.setOnline(false);
 		userDAO.updateUser(user);
-		
+		log.debug("Ending of the method Logout");
 		return new ResponseEntity<String>("You are Logout Successfully!",HttpStatus.OK);
+	}
+	
+	// Function to fetch User Details
+	@RequestMapping(value = "user/{id}",method = RequestMethod.GET)
+	public ResponseEntity<UserModel> fetchUser(@PathVariable("id") int id) {
+		
+		// Setting user Inside model
+		log.debug("Setting the User Inside UserModel");
+		
+		UserModel userModel = new UserModel();
+		User user = userDAO.getUser(id);
+		userModel.setUser(user);
+		
+		// setting List of events created by user inside model
+		log.debug("Setting the List Of Events created by user Inside UserModel");
+		
+		List<Events> events = eventDAO.getUsersEvents(id);
+		userModel.setEvents(events);
+		
+		// setting list of job created by user inside model
+		log.debug("Setting the List Of Job created by user Inside UserModel");
+		
+		List<Job> job = jobDAO.getUsersJob(id);
+		userModel.setJob(job);
+		
+		// setting list of blog created by user inside model
+		log.debug("Setting the List Of blog created by user Inside UserModel");
+		
+		List<Blog> blog = blogDAO.getUsersBlog(id);
+		userModel.setBlog(blog);
+		
+		// setting list of events user has been joined inside model
+		log.debug("Setting the List Of Events Joined by user Inside UserModel");
+		
+		List<EventJoined> eventJoined = eventJoinedDAO.list(id);
+		List<Events> joinedEvents = new ArrayList<>();
+		for (EventJoined ej : eventJoined) {
+			joinedEvents.add(ej.getEvents());
+		}
+		userModel.setJoinedEvents(joinedEvents);
+		
+		// setting list of jobs user has applied for inside model
+		log.debug("Setting the List Of Job applied by user Inside UserModel");
+		
+		List<JobApplied> jobApplieds = jobAppliedDAO.list(id);
+		List<Job> appliedJobList  = new ArrayList<>();
+		for (JobApplied ja : jobApplieds) {
+			appliedJobList.add(ja.getJob());
+		}
+		userModel.setAppliedJobList(appliedJobList);
+		
+		log.debug("Ending of the method Setting User inside UserModel");
+		
+		return new ResponseEntity<UserModel>(userModel,HttpStatus.OK);
+	}
+	
+	// function to fetch main page contain
+	@RequestMapping(value="/main/contain", method=RequestMethod.GET)
+	public ResponseEntity<ContainModel> fetchContain() {
+		
+		log.debug("Starting of the function to fetch the main page content");
+		ContainModel containModel = new ContainModel();
+		
+		log.debug("Starting of the method Fetching top5Blogs");
+		List<Blog> top5Blogs = blogDAO.mainList();
+		containModel.setTop5Blogs(top5Blogs);
+		
+		log.debug("Starting of the method Fetching top3Forums");
+		List<Forum> top3Forums = forumDAO.mainList();
+		containModel.setTop3Forums(top3Forums);
+		
+		log.debug("Starting of the method Fetching top3Jobs");
+		List<Job> top3Jobs = jobDAO.mainList();
+		containModel.setTop3Jobs(top3Jobs);
+		
+		log.debug("Starting of the method Fetching top3Events");
+		List<Events> top3Events = eventDAO.mainList();
+		containModel.setTop3Events(top3Events);
+		
+		log.debug("Ending of the function to fetch the main page content");
+		
+		return new ResponseEntity<ContainModel>(containModel,HttpStatus.OK);
+ 	}
+	
+	// function to fetch my online friends
+	@RequestMapping(value="my/online/friends/{id}",method=RequestMethod.GET)
+	public ResponseEntity<List<User>> fetchOnlineFriends(@PathVariable("id") int userId) {
+		
+		log.debug("Starting of the method fetchOnlineFriends");
+		
+		List<User> users = userDAO.fetchOnlineFriends(userId);
+		List<User> onlineFriends = new ArrayList<>();
+		for (User user1 : users) {
+			if (user1.getId() != userId) {
+				onlineFriends.add(user1);
+			}
+		}
+		log.debug("Ending of the method fetchOnlineFriends");
+		
+		return new ResponseEntity<List<User>>(onlineFriends,HttpStatus.OK);
 	}
 }
 
