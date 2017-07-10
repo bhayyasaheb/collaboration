@@ -73,7 +73,6 @@ public class UserDAOImpl implements UserDAO {
 			user = (User) query.getSingleResult();
 			return user;
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
@@ -96,19 +95,26 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean updateUserProfile(String fileName, int id) {
+
+		User user = this.getUser(id);
+		user.setProfile(fileName);
+		return this.updateUser(user);
+/*		// update the picture id in the database table by using userDAO
+		
 		
 		String selectQuery = "UPDATE User SET profile = :filename WHERE id = :id";
 		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
-		query.setParameter("id", id);
-		query.setParameter("fileName", fileName);
 		
 		try {
+			
 			query.executeUpdate();
 			return true;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
+			e.printStackTrace();
+			return false;
 		}
-		return false;
+*/		
 	}
 
 	@Override

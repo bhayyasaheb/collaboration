@@ -44,9 +44,9 @@ public class EventJoined implements Serializable{
 	
 	@Column(name="user_name")
 	private String userName;
+	
 	@JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd")
 	@Column(name="joined_date")
-	
 	private LocalDate joinedDate;
 	
 	private String status;

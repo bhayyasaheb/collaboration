@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sbkchat.collaboration.dao.UserDAO;
+import com.sbkchat.collaboration.dto.User;
 import com.sbkchat.collaboration.model.Response;
 
 @RestController
@@ -42,11 +43,10 @@ public class UploadController {
 		// we would be using the USER_PROFILE as a prefix so that we can use other prefix
 		// for other kind of upload such as event which may have id auto-generated
 		
-		String fileName = "USER_PROFILE_" + id + ".png";
+		String fileName = "USER_PROFILE_" + id + ".jpg";
 		
 		if(uploadFile(imageBasePath,fileName,file)) {
 			
-			// update the picture id in the database table by using userDAO
 			userDAO.updateUserProfile(fileName, id);
 			
 			// in the reponse the filename of the new image will be send
@@ -73,7 +73,7 @@ public class UploadController {
 		}
 		try {
 			// transfer the file
-			file.transferTo(new File(fileName+fileName));
+			file.transferTo(new File(directory+fileName));
 			// file Upload SucessFully
 			log.debug("File Uploaded Successfully!");
 			return true;

@@ -173,13 +173,13 @@ public class UserController {
 	
 	// method to log out user and set online false
 	@RequestMapping(value="/logout", method=RequestMethod.POST)
-	public ResponseEntity<String> toLogout(@RequestBody User user)
+	public ResponseEntity<Void> toLogout(@RequestBody User user)
 	{
 		log.debug("Starting of the method Log out");
 		user.setOnline(false);
 		userDAO.updateUser(user);
 		log.debug("Ending of the method Logout");
-		return new ResponseEntity<String>("You are Logout Successfully!",HttpStatus.OK);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	// Function to fetch User Details
