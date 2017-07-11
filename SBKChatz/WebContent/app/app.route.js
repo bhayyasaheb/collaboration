@@ -72,7 +72,32 @@ window.routes = {
 			roles : ['User','Super_Admin','Admin','Employer']
 		},
 		
+		// form for creating new event
+		"/event/new" : {
+			templateUrl : 'app/components/events/newEvent.html',
+			controller : 'eventController',
+			controllerAs : 'eventCtrl',
+			requireLogin :true,
+			roles : ['Super_Admin','Admin','Employer']
+		},
 		
+		// For viewing list of event 
+		"/events/list" : {
+			templateUrl : 'app/components/events/eventlist.html',
+			controller : 'eventController',
+			controllerAs : 'eventCtrl',
+			requireLogin :true,
+			roles : ['User','Super_Admin','Admin','Employer']
+		},
+		
+		// for viewing single event
+		"/event/:id" : {
+			templateUrl : 'app/components/events/event.html',
+			controller : 'eventController',
+			controllerAs : 'eventCtrl',
+			requireLogin :true,
+			roles : ['User','Super_Admin','Admin','Employer']
+		},
 		
 		
 		// for Navigating Error page

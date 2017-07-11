@@ -23,4 +23,8 @@ public interface EventJoinedDAO {
 	
 	// get list of event joined by user id
 	List<EventJoined> list(int id);
+	
+	// get list of event by event id
+	List<EventJoined> listByEventId(int eventId);
 }
+

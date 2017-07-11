@@ -78,7 +78,7 @@ forum.controller('forumController',
 							console.log('Sucessfully Added Forum Categories!');
 						},
 					function(errResponse){
-							console.log('Failed to Add the Forum categories!')
+							console.log('Failed to Add the Forum categories!');
 						}
 					);
 			}
@@ -94,7 +94,7 @@ forum.controller('forumController',
 							console.log('Sucessfully Fetched Forum Categories!');
 						},
 					function(errResponse){
-							console.log('Failed to Fetch the Forum categories!')
+							console.log('Failed to Fetch the Forum categories!');
 						}	
 					);
 			}
@@ -133,10 +133,10 @@ forum.controller('forumController',
 										self.singleForum = forumModel.forum;
 										self.singleForumUser = forumModel.user;
 										fetchForumPosts();
-										console.log('Sucessfully Fetch Single Forum!')
+										console.log('Sucessfully Fetch Single Forum!');
 									},
 								function(errResponse){
-										console.log('Failed to Fetch Single Forum!')
+										console.log('Failed to Fetch Single Forum!');
 									}	
 								);
 							
@@ -154,10 +154,10 @@ forum.controller('forumController',
 							$route.reload();
 							Materialize.toast('Request to Join the Forum sent!',3000);
 							self.viewForum();
-							console.log('Request to Join the Forum sent!')
+							console.log('Request to Join the Forum sent!');
 						},
 					function(errResponse){
-							console.log(' Failed to Send Request to Join the Forum!')
+							console.log(' Failed to Send Request to Join the Forum!');
 						}	
 					);
 			}
@@ -214,7 +214,7 @@ forum.controller('forumController',
 				forumFactory.fetchForumPosts(forumId)
 					.then(function(forumPosts){
 							debugger;
-							console.log('SucessFully Fetched the Forum Posts')
+							console.log('SucessFully Fetched the Forum Posts');
 							self.forumPostsList = forumPosts;
 							
 						},

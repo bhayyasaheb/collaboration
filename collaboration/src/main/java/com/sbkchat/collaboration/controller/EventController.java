@@ -18,6 +18,7 @@ import com.sbkchat.collaboration.dao.EventDAO;
 import com.sbkchat.collaboration.dao.EventJoinedDAO;
 import com.sbkchat.collaboration.dao.UserDAO;
 import com.sbkchat.collaboration.dto.EventJoined;
+import com.sbkchat.collaboration.dto.EventModel;
 import com.sbkchat.collaboration.dto.Events;
 import com.sbkchat.collaboration.dto.User;
 
@@ -147,4 +148,27 @@ public class EventController {
 		
 		return new ResponseEntity<EventJoined>(eventJoined,HttpStatus.OK);
 	}*/
+	
+	@RequestMapping(value="event/{id}", method=RequestMethod.GET)
+	public ResponseEntity<EventModel> viewEvent(@PathVariable("id") int id){
+		
+		EventModel eventModel = new EventModel();
+		Events event = eventDAO.getEvent(id);
+		User user = userDAO.getUser(event.getUserId());
+		
+		eventModel.setEvents(event);
+		eventModel.setUser(user);
+		
+		return new ResponseEntity<EventModel>(eventModel,HttpStatus.OK);
+	}
+	
+	// getting the list of participated for event
+	@RequestMapping(value="/event/participatedUsers/list/{id}", method=RequestMethod.GET)
+	public ResponseEntity<List<EventJoined>> fetchParticipatedUsers(@PathVariable("id") int id)
+	{
+		List<EventJoined> eventJoined = eventJoinedDAO.listByEventId(id);
+		return new ResponseEntity<List<EventJoined>>(eventJoined, HttpStatus.OK);
+	}
+	
+	
 }

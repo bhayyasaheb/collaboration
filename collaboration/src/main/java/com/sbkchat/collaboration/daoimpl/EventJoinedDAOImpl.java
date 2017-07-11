@@ -73,4 +73,12 @@ public class EventJoinedDAOImpl implements EventJoinedDAO {
 		return query.list();
 	}
 
+	@Override
+	public List<EventJoined> listByEventId(int eventId) {
+		
+		String selectQuery = "FROM EventJoined where event_id = '"+ eventId + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
+		return query.list();
+	}
+
 }
