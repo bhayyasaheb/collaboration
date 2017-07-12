@@ -34,13 +34,13 @@ event.controller('eventController',
 				self.participatedUsers = [];
 				
 				// flag to see user is participant or not
-				//self.isParticipant = false;
+				self.isParticipant = false;
 				
 				// flag to check joining status
-				//self.isApproved = false;
+				self.isApproved = false;
 				
 				// for storing participant status
-				//self.participantStatus = "PENDING";
+				self.participantStatus = "PENDING";
 				
 				
 				// calling jQuery once controller has loaded
@@ -106,7 +106,7 @@ event.controller('eventController',
 						.then(function(event){
 								$route.reload();
 								Materialize.toast('Sucessfully Joined Event!',3000);
-								self.viewForum();
+								self.viewEvent();
 								console.log('Sucessfully  joined  Event');
 							},
 						function(errResponse){
@@ -122,7 +122,7 @@ event.controller('eventController',
 				self.viewEvent = function() {
 					
 					//First get the list of users to EventJoined
-			/*		getParticipatedUsers()
+					getParticipatedUsers()
 						.then(function(participatedUsers){
 								// to store list of participated users already defined in array
 								self.participatedUsers = participatedUsers;
@@ -155,9 +155,9 @@ event.controller('eventController',
 							}
 						);
 					
-				}*/
+				}
 					
-					var eventId = $routeParams.id;
+					/*var eventId = $routeParams.id;
 					eventFactory.viewEvent(eventId)
 						.then(function(eventModel){
 								self.singleEvent = eventModel.events;
@@ -167,7 +167,7 @@ event.controller('eventController',
 						function(errResponse){
 								console.error('Failed to get the single Event!');
 							}	
-						);}
+						);}*/
 				
 				
 				// function to fetch the list of participant users

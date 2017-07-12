@@ -72,11 +72,14 @@
 	<div id="panel" class="card-panel hoverable">
 	
 		<form id="register" name="register" ng-submit="authCtrl.register() && register.$valid" novalidate>
+				<div class="center-align">
+					<h4 style="color: purple">Sign Up</h4>
+				</div>
 		
 		<!-- Auto generated User Id that's why id field is hidden -->
 			<input type="hidden" ng-model="authCtrl.client.id" />
 		<div style="margin-left: 25px">
-		
+			
 		<!-- User name will be come here -->
 			<div class="row">
 				<div class="input-field">

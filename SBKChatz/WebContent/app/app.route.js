@@ -54,6 +54,15 @@ window.routes = {
 			roles : ['User','Super_Admin','Admin','Employer']
 		},
 		
+		/*// For creating new forum
+		"/forum/new" : {
+			templateUrl : 'app/components/forum/newForum.html',
+			controller : 'forumController',
+			controllerAs : 'forCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
+		},*/
+		
 		// For viewing list of forums and adding a new one
 		"/forum/list" : {
 			templateUrl : 'app/components/forum/forumlist.html',

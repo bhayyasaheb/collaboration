@@ -1,10 +1,13 @@
+<div style="margin-top: 50px; padding-left: 50px; margin-bottom: 50px;">
+
 <div class="row">
 
-	<div class="col m8 offset-m2">
-		<div class="card-hoverable" style="margin-bottom: 25px;">
+	<div class="col s8 offset-s2">
+		<div class="card hoverable" >
 			<h3 style="padding-left: 20px; padding-top: 20px;">Create Event</h3>
 			<div class="row">
 				<form id="newEvent" name="newEvent" ng-submit="eventCtrl.addEvent()" class="col s12" style="padding-bottom: 40px;">
+				<hr>
 					<input type="hidden" ng-model="eventCtrl.event.id"/>
 					<div class="row">
 						<div class="input-field col s12">
@@ -46,4 +49,6 @@
 		</div>
 	</div>
 	
+</div>
+
 </div>

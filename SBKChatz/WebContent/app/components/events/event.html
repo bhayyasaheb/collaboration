@@ -22,7 +22,7 @@
 							<div class="col m8">
 								<h4>{{eventCtrl.singleEvent.name}}</h4>
 							</div>
-							<!-- ng-if="((user.id != eventCtrl.singleEvent.userId) && !eventCtrl.isParticipant)" -->
+							
 							<div class="col m4" ng-if="((user.id != eventCtrl.singleEvent.userId) && !eventCtrl.isParticipant)">
 								<a class="waves-effect waves-light btn" ng-click="eventCtrl.joinEvent()">
 								<i class="material-icons">add</i>JOIN EVENT</a>								
@@ -48,30 +48,38 @@
 		</div>
 		
 		<!--  if User id not Joined Event -->
-		<!-- <div ng-if="!eventCtrl.isParticipant">
+		<div ng-if="!eventCtrl.isParticipant">
 			<div class="card hoverable" style="background-color: #ff0000;">
 				<marquee>
 					<span style="color: #fff; padding-left: 25px;">You are not Joined of this Event.</span>
 				</marquee>	
 			</div>
-		</div> -->
+		</div>
 		
 		<!-- If User is Joined and Status is Pending -->
-		<!-- <div ng-if="(eventCtrl.isParticipant) && eventCtrl.participantStatus == 'PENDING'">
+		<div ng-if="(eventCtrl.isParticipant) && eventCtrl.participantStatus == 'APPROVED'">
 			<div class="card hoverable" style="background-color: #ff0000;">
 				<marquee>
 					<span style="color: #fff; padding-left: 25px;">
-						Your request to join the Event submitted successfully and waiting response from admin after approval.
+						<!-- Your request to join the Event submitted successfully and waiting response from admin after approval. -->
+						Welcome,You are Joined This Event! 
 					</span>
 				</marquee>
 			</div>
-		</div> -->
+		</div>
 		
 	
 	</div>
 	
 	<div class="col m3">
+	
 		<div ng-include="'app/shared/rightSide.html'"></div>
+		
+		<div style="margin: 25px auto 0 auto;" ng-if="user.role != 'User' ">
+			<a href="#!/event/new" class="waves-effect waves-light btn-large"><i class="material-icons right">today</i>CREATE EVENT</a>
+		</div>
+		
+		
 	</div>
 
 </div>

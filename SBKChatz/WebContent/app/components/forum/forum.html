@@ -138,6 +138,10 @@
 	
 	<div class="col m3"> 
 		<div ng-include="'app/shared/rightSide.html'"></div>
+		
+		<div style="margin-top: 25px auto 0 auto;" ng-if="user.role != 'User' && user.role != 'Employer' ">
+ 			<button data-target="category" class="waves-effect waves-light btn-large"><i class="material-icons">question_answer</i>CREATE FORUM</button>
+ 		</div>
 	</div>
 	
 </div>

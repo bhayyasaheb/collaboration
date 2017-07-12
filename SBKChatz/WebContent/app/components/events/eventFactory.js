@@ -94,7 +94,7 @@ event.factory('eventFactory',['$http','$q','$routeParams', function($http,$q,$ro
 		
 		var deferred = $q.defer();
 		
-		$http.get('/event/participatedUsers/list/' + id)
+		$http.get(eventUrl + '/event/participatedUsers/list/' + id)
 			.then(function(response){
 				deferred.resolve(response.data);
 				console.log('Sucessfully Fetched participant of the Event!');
