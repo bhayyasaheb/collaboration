@@ -20,6 +20,7 @@ import com.sbkchat.collaboration.dao.JobDAO;
 import com.sbkchat.collaboration.dao.UserDAO;
 import com.sbkchat.collaboration.dto.Job;
 import com.sbkchat.collaboration.dto.JobApplied;
+import com.sbkchat.collaboration.dto.JobModel;
 import com.sbkchat.collaboration.dto.User;
 
 @RestController
@@ -166,19 +167,30 @@ public class JobController {
 		
 		return new ResponseEntity<List<Job>>(jobList, HttpStatus.OK);
 	}
+	
+	// Method for view Single Job by job id
+	@RequestMapping(value="/job/{id}", method=RequestMethod.GET)
+	public ResponseEntity<JobModel> viewJob(@PathVariable("id") int id){
+		
+		JobModel jobModel = new JobModel();
+		Job job = jobDAO.getJob(id);
+		User user = userDAO.getUser(job.getUserId());
+		
+		jobModel.setJob(job);
+		jobModel.setUser(user);
+		
+		return new ResponseEntity<JobModel>(jobModel,HttpStatus.OK);
+		
+	}
+	
+	// Method to get list of User Who is Applied for a job by job id
+	@RequestMapping(value="/job/appliedUsers/list/{id}",method=RequestMethod.GET)
+	public ResponseEntity<List<JobApplied>> fetchAppliedUsers(@PathVariable("id") int id){
+	
+		List<JobApplied> appliedJob = jobAppliedDAO.listByJobId(id);
+		return new ResponseEntity<List<JobApplied>>(appliedJob,HttpStatus.OK);
+	}
+	
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

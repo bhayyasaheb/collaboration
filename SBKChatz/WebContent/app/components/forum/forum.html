@@ -87,7 +87,7 @@
 		
 		<!-- If User is Not Participated  -->
 		
-		<div ng-if="!forCtrl.isParticipant">
+		<div ng-if="((user.id != forCtrl.singleForum.userId) && !forCtrl.isParticipant)">
 			<div class="card hoverable" style="background-color: #ff0000;">
 				<marquee>
 					<span style="color: #fff; padding-left: 25px;">You are not participant of this thread. Join the forum to post and to view posts of others.</span>

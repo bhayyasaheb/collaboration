@@ -69,6 +69,11 @@ event.controller('eventController',
 						.then(function(event){
 								debugger;
 								self.event = event;
+								if(self.event.status == 'APPROVED'){
+									Materialize.toast('Event Created Sucessfully!',2000)
+								}else {
+									Materialize.toast('Event Created Sucessfully! now Waiting for Admin Approval!',3000)
+								}
 								var eId = self.event.id;
 								//$location.path('/events/list');
 								$location.path('/event/'+eId);
@@ -110,7 +115,7 @@ event.controller('eventController',
 								console.log('Sucessfully  joined  Event');
 							},
 						function(errResponse){
-								console.error('Failed to sent Request to join evnt!');
+								console.error('Failed to sent Request to join event!');
 							}	
 						);
 					
@@ -136,7 +141,7 @@ event.controller('eventController',
 								}
 								
 								// if user is joined for event then set status
-								if(self.participantStatus = "APPROVED"){
+								if(self.participantStatus == "APPROVED"){
 									self.isApproved = true;
 								}
 								

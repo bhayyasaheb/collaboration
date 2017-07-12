@@ -73,4 +73,12 @@ public class JobAppliedDAOImpl implements JobAppliedDAO {
 		return query.list();
 	}
 
+	@Override
+	public List<JobApplied> listByJobId(int jobId) {
+		
+		String selectQuery = "FROM JobApplied where job_id= '"+ jobId + "'";
+		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
+		return query.list();
+	}
+
 }

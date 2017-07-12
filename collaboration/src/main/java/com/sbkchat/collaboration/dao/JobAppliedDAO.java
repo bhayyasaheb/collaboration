@@ -23,4 +23,7 @@ public interface JobAppliedDAO {
 	
 	//list of job applied
 	List<JobApplied> list();
+	
+	// get list jobApplied  by jobid
+	List<JobApplied> listByJobId(int jobId);
 }

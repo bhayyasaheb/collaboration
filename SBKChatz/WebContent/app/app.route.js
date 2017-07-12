@@ -108,6 +108,35 @@ window.routes = {
 			roles : ['User','Super_Admin','Admin','Employer']
 		},
 		
+		// for Creating new Job
+		"/job/new" : {
+			templateUrl : 'app/components/jobs/newJob.html',
+			controller : 'jobController',
+			controllerAs : 'jobCtrl',
+			requireLogin :true,
+			roles : ['Super_Admin','Admin','Employer']
+		},
+		
+		
+		// for viewing list of job
+		"/jobs/list" : {
+			templateUrl : 'app/components/jobs/joblist.html',
+			controller : 'jobController',
+			controllerAs : 'jobCtrl',
+			requireLogin :true,
+			roles : ['User','Super_Admin','Admin','Employer']
+		},
+		
+		// for viewing single job
+		"/job/:id" : {
+			templateUrl : 'app/components/jobs/job.html',
+			controller : 'jobController',
+			controllerAs : 'jobCtrl',
+			requireLogin :true,
+			roles : ['User','Super_Admin','Admin','Employer']
+		},
+		
+		
 		
 		// for Navigating Error page
 		"/error" : {

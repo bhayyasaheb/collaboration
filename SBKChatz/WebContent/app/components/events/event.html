@@ -48,7 +48,7 @@
 		</div>
 		
 		<!--  if User id not Joined Event -->
-		<div ng-if="!eventCtrl.isParticipant">
+		<div ng-if="((user.id != eventCtrl.singleEvent.userId) && !eventCtrl.isParticipant)">
 			<div class="card hoverable" style="background-color: #ff0000;">
 				<marquee>
 					<span style="color: #fff; padding-left: 25px;">You are not Joined of this Event.</span>

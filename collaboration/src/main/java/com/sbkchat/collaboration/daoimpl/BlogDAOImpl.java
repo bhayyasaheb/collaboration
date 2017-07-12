@@ -83,7 +83,7 @@ public class BlogDAOImpl implements BlogDAO {
 	@Override
 	public List<Blog> mainList() {
 		
-		String selectQuery = "FROM Blog where status = 'APPROVED' order by no_of_Views";
+		String selectQuery = "FROM Blog where status = 'APPROVED' order by noOfViews desc";
 		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
 		query.setFirstResult(0);
 		query.setMaxResults(5);

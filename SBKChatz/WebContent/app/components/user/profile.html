@@ -84,13 +84,13 @@
 					<div class="card hoverable" style="width: inherit;" ng-repeat="job in userCtrl.contain.top3Jobs | filter : containSearch">
 						<div class="card-content">
 						
-							<h5><b>{{job.companyName}}</b></h5>
+							<h5><a  href="#!/job/{{job.id}}">{{job.companyName}}</a></h5>
 							<h6>{{job.subTitle}}</h6>
 							<b>About The Company</b>
 							<p>{{job.about}}</p>
-							<div>
+							<!-- <div>
 								<a ng-click="userCtrl.applyJob(job.id)" class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="APPLY"><i class="material-icons">add</i></a>
-							</div>
+							</div> -->
 							<hr>
 							<div class="row">
 								<div class="col m4">
@@ -115,7 +115,7 @@
 					<a href="#!/jobs/list" class="center-align">View All</a>
 				</div>
 				
-				<!--All Events wil come here  -->
+				<!--All Events will come here  -->
 				
 				<div id="events" class="col s12">
 				
@@ -125,7 +125,7 @@
 							<span class="card-title activator grey-text text-darken-4"><a href="#!/event/{{event.id}}">{{event.name}}</a></span>
 							<p style="font-size: 13px;">Organised By: {{event.userName}} | {{event.postDate | date : 'MMMM,d y'}}</p><br>
 							<p>{{event.description}}</p>
-							<a ng-click="userCtrl.joinEvent(event.id);" class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a>
+							<!-- <a ng-click="userCtrl.joinEvent(event.id);" class="btn-floating halfway-fab waves-effect waves-light red tooltipped" data-position="bottom" data-delay="50" data-tooltip="JOIN EVENT"><i class="material-icons">add</i></a> -->
 							<br>
 							<div class="row">
 								<div class="col m6">

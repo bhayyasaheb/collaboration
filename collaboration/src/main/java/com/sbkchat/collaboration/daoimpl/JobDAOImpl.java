@@ -85,10 +85,10 @@ public class JobDAOImpl implements JobDAO {
 	@Override
 	public List<Job> mainList() {
 		
-		String selectQuery = "FROM Job where status='APPROVED' order by postDate";
+		String selectQuery = "FROM Job where status='APPROVED' order by postDate desc";
 		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
 		query.setFirstResult(0);
-		query.setMaxResults(5);
+		query.setMaxResults(3);
 		return query.list();
 	}
 

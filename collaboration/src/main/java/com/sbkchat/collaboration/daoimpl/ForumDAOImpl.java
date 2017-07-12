@@ -68,7 +68,7 @@ public class ForumDAOImpl implements ForumDAO {
 	@Override
 	public List<Forum> mainList() {
 		
-		String selectQuery = "FROM Forum order by createDate";
+		String selectQuery = "FROM Forum order by createDate desc";
 		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
 		query.setFirstResult(0);
 		query.setMaxResults(3);

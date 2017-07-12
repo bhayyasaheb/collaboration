@@ -149,7 +149,7 @@ public class EventController {
 		return new ResponseEntity<EventJoined>(eventJoined,HttpStatus.OK);
 	}*/
 	
-	@RequestMapping(value="event/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/event/{id}", method=RequestMethod.GET)
 	public ResponseEntity<EventModel> viewEvent(@PathVariable("id") int id){
 		
 		EventModel eventModel = new EventModel();
