@@ -27,6 +27,25 @@ window.routes = {
 			roles : ['User','Employer','Admin','Super_Admin']
 		},
 		
+		
+		// for assigning role to the user and to update or delete user
+		"/manage/users" : {
+			templateUrl : 'app/components/user/manageUser.html',
+			controller : 'adminController',
+			controllerAs : 'adminCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin']
+		},
+		
+		// for accepting requests of users
+		"/requests/users" : {
+			templateUrl : 'app/components/user/userRequests.html',
+			controller : 'requestController',
+			controllerAs : 'requestCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
+		},
+		
 		// form for creating new blog
 		"/blog/new" : {
 			templateUrl : 'app/components/blogs/newBlog.html',
@@ -52,6 +71,24 @@ window.routes = {
 			controllerAs : 'blogCtrl',
 			requireLogin : true,
 			roles : ['User','Super_Admin','Admin','Employer']
+		},
+		
+		// for updating or delete blog
+		"/manage/blogs" : {
+			templateUrl : 'app/components/blogs/manageBlogs.html',
+			controller : 'adminController',
+			controllerAs : 'adminCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
+		},
+		
+		// for accepting requests of blogs
+		"/requests/blogs" : {
+			templateUrl : 'app/components/blogs/blogRequests.html',
+			controller : 'requestController',
+			controllerAs : 'requestCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
 		},
 		
 		/*// For creating new forum
@@ -81,6 +118,26 @@ window.routes = {
 			roles : ['User','Super_Admin','Admin','Employer']
 		},
 		
+		
+		// for updating or delete forum
+		"/manage/forums" : {
+			templateUrl : 'app/components/forum/manageForums.html',
+			controller : 'adminController',
+			controllerAs : 'adminCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
+		},
+		
+		// for accepting requests of forums
+		"/requests/forums" : {
+			templateUrl : 'app/components/forum/forumRequests.html',
+			controller : 'requestController',
+			controllerAs : 'requestCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
+		},
+		
+		
 		// form for creating new event
 		"/event/new" : {
 			templateUrl : 'app/components/events/newEvent.html',
@@ -108,6 +165,25 @@ window.routes = {
 			roles : ['User','Super_Admin','Admin','Employer']
 		},
 		
+		// for updating or delete events
+		"/manage/events" : {
+			templateUrl : 'app/components/events/manageEvents.html',
+			controller : 'adminController',
+			controllerAs : 'adminCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
+		},
+		
+		// for accepting requests of events
+		"/requests/events" : {
+			templateUrl : 'app/components/events/eventsRequests.html',
+			controller : 'requestController',
+			controllerAs : 'requestCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
+		},
+		
+		
 		// for Creating new Job
 		"/job/new" : {
 			templateUrl : 'app/components/jobs/newJob.html',
@@ -134,6 +210,25 @@ window.routes = {
 			controllerAs : 'jobCtrl',
 			requireLogin :true,
 			roles : ['User','Super_Admin','Admin','Employer']
+		},
+		
+		
+		// for updating or delete job
+		"/manage/jobs" : {
+			templateUrl : 'app/components/jobs/manageJobs.html',
+			controller : 'adminController',
+			controllerAs : 'adminCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
+		},
+		
+		// for accepting requests of job
+		"/requests/jobs" : {
+			templateUrl : 'app/components/jobs/jobsRequests.html',
+			controller : 'requestController',
+			controllerAs : 'requestCtrl',
+			requireLogin : true,
+			roles : ['Super_Admin','Admin']
 		},
 		
 		

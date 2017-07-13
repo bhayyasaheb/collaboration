@@ -18,27 +18,17 @@
 		
 		<!-- Navbar display of Search bar-->
 		
-			<!-- <li>
-				<div class="input-field left" style="margin-left:200px">
-					<input id="search" type="search" required style="display: inline; width: 300px" placeholder="Search for Friends"/>
+			 <li>
+				<div class="input-field left" style="margin-left:170px">
+					<input id="search" type="search" required style="display: inline; width: 200px" placeholder="Search for Friends"/>
 					<label class="label-icon" for="search"><i class="material-icons">search</i></label>
 					<i id="close-search" class="material-icons">close</i>
 				</div>
-			</li> -->
-			
-		
-			
-		</ul>
-		
-		<ul id="nav-mobile" class="right hide-on-med-and-down">
-		
-			<li>
-				<a href="#!/user" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="home"><i class="material-icons" style="display: inline;">home</i></a>
-			</li>
+			</li> 
 			
 			<!-- Manage button for admin -->
 			
-			<li>
+			<li style="margin-left: 220px">
 				<div style="display: inline;">
 					<a class='dropdown-button' data-activates='manage' ng-if="user.role == 'Super_Admin' || user.role == 'Admin'">Manage</a>
 					
@@ -73,8 +63,58 @@
 				</div>
 			</li>
 			
+				
+		</ul>
 		
-			
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+		
+			<li>
+				<a href="#!/user" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="home"><i class="material-icons" style="display: inline;">home</i></a>
+			</li>
+			<!-- <li>
+				<div style="display: inline;">
+					<a class='dropdown-button' data-activates='blogs'>Blogs</a>
+					Dropdown Structure
+					<ul id='blogs' class="dropdown-content">
+						<li><a href="#!/blog/new"><i class="material-icons">mode_edit</i>Create</a></li>
+						<li><a href="#!/blogs/all"><i class="material-icons">list</i>View All</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div style="display: inline;">
+					<a class='dropdown-button' data-activates='forums'>Forums</a>
+					Dropdown Structure
+					<ul id='forums' class="dropdown-content">
+						<li ng-if="user.role != 'User' && user.role != 'Employer'"><a href="#!/forum/new">Create</a></li>
+						<li><a href="#!/forum/list"><i class="material-icons">list</i>View All</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div style="display: inline;">
+					<a class='dropdown-button' data-activates='jobs'>Jobs</a>
+					Dropdown Structure
+					<ul id='jobs' class="dropdown-content">
+						<li ng-if="user.role != 'User'"><a href="#!/job/new"><i class="material-icons">mode_edit</i>Create</a></li>
+						<li><a href="#!/jobs/list"><i class="material-icons">list</i>View All</a></li>
+					</ul>
+				</div>
+			</li>
+			<li>
+				<div style="display: inline;">
+					<a class='dropdown-button' data-activates='events'>Events</a>
+					Dropdown Structure
+					<ul id='events' class="dropdown-content">
+						<li ng-if="user.role != 'User'"><a href="#!/event/new"><i class="material-icons">mode_edit</i>Create</a></li>
+						<li><a href="#!/events/list"><i class="material-icons">list</i>View All</a></li>
+					</ul>
+						
+				</div>
+			</li> -->
+			<li>
+				<a href="#!/user/friendRequest">Friend Requests</a>
+			</li>
 			<!-- <li>
 				<div style="display: inline;">
 					<a class='news-button' data-activates='new'>What's new?</a>

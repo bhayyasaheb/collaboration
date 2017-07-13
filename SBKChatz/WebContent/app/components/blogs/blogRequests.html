@@ -21,8 +21,8 @@
                     <tr ng-repeat="blogs in requestCtrl.pendingBlogs | orderBy : 'id'">
                         <td>{{blogs.id}}</td>
                         <td><a href="#!/blog/{{blogs.id}} " target="_blank">{{blogs.name}}</a></td>
-                        <td>{{blogs.userName}}</td>
-                        <td>{{blogs.postDate | date : 'MMMM d, y'}}</td>
+                        <td>{{blogs.username}}</td>
+                        <td>{{blogs.createDate | date : 'MMMM d, y'}}</td>
                         <td> 
                             <div class="switch">
                             <label>

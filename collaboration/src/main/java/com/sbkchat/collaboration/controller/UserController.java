@@ -82,7 +82,7 @@ public class UserController {
 		user.setStatus("PENDING");
 		user.setEnabled(true);
 		user.setOnline(true);
-		user.setProfile("no.jpg");
+		user.setProfile("noDp.jpg");
 		user.setRole("User");
 		
 		userDAO.addUser(user);
@@ -98,7 +98,7 @@ public class UserController {
 	{
 		User currentUser = userDAO.getUser(id);
 		currentUser.setStatus("APPROVED");
-		
+		currentUser.setRole("Super_Admin");
 		userDAO.updateUser(currentUser);
 		
 		return new ResponseEntity<User>(currentUser,HttpStatus.OK);

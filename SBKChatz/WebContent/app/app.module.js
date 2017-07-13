@@ -7,5 +7,7 @@ var sbkchat = angular.module('sbkchat',[
 	'blogCommentModule',
 	'forumModule',
 	'eventModule',
-	'jobModule'
+	'jobModule',
+	'adminModule',
+	'requestModule'
 ]);

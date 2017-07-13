@@ -1,14 +1,14 @@
 <div class="row" ng-init="requestCtrl.pendingJobList()">
 
 	<div style="margin-top: 25px; margin-left: 25px;">
-		<h5>New Job Requests</h5>
+		<h4>New Job Requests</h5>
 	</div>
 	
 	<br><hr>
 	
 	<div style="margin-left:25px; margin-bottom: 250px;">
-		<div class="card hoverable" style="width: 1300px;" ng-repeat="job in jobCtrl.pendingJobs">
-			
+		<div class="card hoverable" style="width: 1300px;" ng-repeat="job in requestCtrl.pendingJobs">
+			<div class="row">
 			<!-- Job Information come here -->
 			<div class="col m9">
 				<div class="card-content">
@@ -39,7 +39,7 @@
 			<!-- Employer Information Starts from here -->
 			<div class="col m3">
 				<div style="padding-top: 50px;">
-					<b>Employer Name:</b> &nbsp; &nbsp; {{job.username}}
+					<b>Employer Name:</b> &nbsp; &nbsp; {{job.userName}} <br>
 					<b>Published On:</b> &nbsp; &nbsp; {{job.postDate | date : 'MMMM d, y'}}
 					<div class="center-align" style="margin-top: 10px;">
 						<button type="submit" class="waves-effect waves-light btn-large" ng-click="requestCtrl.approveJob(job.id)">APPROVE</button>
@@ -47,7 +47,7 @@
 				</div>
 			</div>
 			<!-- Employee Information End here -->
-			
+			</div>
 		</div>	
 	</div>
 	

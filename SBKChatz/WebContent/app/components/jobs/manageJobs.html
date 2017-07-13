@@ -12,7 +12,7 @@
 				<!-- Job Information come here -->
 				<div class="col m9">
 					<div class="card-content">
-						<h5><b>{{job.companyName}}</b></h5>
+						<h5><a href="#!/job/{{job.id}}" target="_blank">{{job.companyName}}</a></h5>
 						<h6>{{job.subTitle}}</h6>
 						<b>About The Company</b>
 						<p>{{job.about}}</p>
@@ -42,8 +42,8 @@
 						<b>Employer Name:</b> &nbsp; &nbsp; {{job.username}}
 						<b>Published On:</b> &nbsp; &nbsp; {{job.postDate | date : 'MMMM d, y'}}
 						<div class="center-align" style="margin-top: 10px;">
-							<button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">mode_edit</i>EDIT</button>
-							<button type="submit" class="waves-effect waves-light btn-large"><i class="material-icons">delete</i>DELETE</button>
+							<button type="submit" class="waves-effect waves-light btn-large green"><i class="material-icons">mode_edit</i>EDIT</button>
+							<button type="submit" class="waves-effect waves-light btn-large red"><i class="material-icons">delete</i>DELETE</button>
 						</div>
 					</div>
 				</div>
