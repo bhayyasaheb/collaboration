@@ -35,7 +35,7 @@ admin.controller('adminController',
 					.then(function(approvedUsers){
 							debugger;
 							// setting up an var index as 0
-							var index = 0; 
+							/*var index = '0'; 
 							// traversing through array to remove user with super admin role
 							for(var user in approvedUsers){
 								var role = approvedUsers[user].role;
@@ -43,9 +43,11 @@ admin.controller('adminController',
 								if(role != 'Super_Admin'){
 									self.tempUserList[index++] = approvedUsers[user];
 								}
-							}
+							}*/
 							// assigning temp user list to approvedUser list
-							self.approvedUserList = self.tempUserList;
+							//self.approvedUserList = self.tempUserList;
+							
+							self.approvedUserList = approvedUsers;
 							
 							console.log('Sucessfully get list of approvedUserList!')
 							
