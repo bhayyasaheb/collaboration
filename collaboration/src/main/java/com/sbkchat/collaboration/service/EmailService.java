@@ -1,5 +1,6 @@
 package com.sbkchat.collaboration.service;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.sbkchat.collaboration.dto.User;
 
-@Service
+@Service("emailService")
 public class EmailService {
 
 	// Autowired the mail sender bean here
@@ -18,7 +19,7 @@ public class EmailService {
 	private JavaMailSender mailSender;
 	
 	// email name which is not similar to the user name
-	private static String from = "sbkChatz";
+	private static String from = "sbkchat";
 	
 	/**
 	 *  approvedUserMessage method will be called using emailService that can be Autowired
@@ -43,14 +44,14 @@ public class EmailService {
 			helper = new MimeMessageHelper(mimeMessage,false, "utf-8");
 			
 			// set up Your HTML message here
-			StringBuilder htmlMeg = new StringBuilder();
+			StringBuilder htmlMsg = new StringBuilder();
 			
-			htmlMeg.append("<h1> Welcome "+ user.getFirstName() + " "+ user.getLastName() + "!</h1>");
-			htmlMeg.append("<p> Your account has been activated!</p><br/>");
-			htmlMeg.append("<p> Thanks for joining with us!</p><br/>");
+			htmlMsg.append("<h1> Welcome "+ user.getFirstName() + " "+ user.getLastName() + "!</h1>");
+			htmlMsg.append("<p> Your account has been activated!</p><br/>");
+			htmlMsg.append("<p> Thanks for joining with us!</p><br/>");
 			
 			// add the HTML content to the mimeMessage
-			mimeMessage.setContent(htmlMeg.toString(),"text/html");
+			mimeMessage.setContent(htmlMsg.toString(),"text/html");
 			
 			// set the subject and recipient of mail
 			helper.setTo(user.getEmailId());
@@ -58,8 +59,9 @@ public class EmailService {
 			helper.setFrom(from);
 			
 			// send the message
+			mailSender.send(mimeMessage);
 			
-		} catch (Exception e) {
+		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
 			
