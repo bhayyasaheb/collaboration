@@ -168,6 +168,8 @@ public class FriendController {
 		
 		return new ResponseEntity<List<User>>(myFriends,HttpStatus.OK);
 	}
+	
+		
 }
 
 

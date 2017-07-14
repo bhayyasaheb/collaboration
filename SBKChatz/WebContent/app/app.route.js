@@ -231,7 +231,23 @@ window.routes = {
 			roles : ['Super_Admin','Admin']
 		},
 		
+		// for viewing the list of all site members
+		"/member/list" : {
+			templateUrl : 'app/components/friends/memberslist.html',
+			controller : 'friendController',
+			controllerAs : 'friendCtrl',
+			requireLogin : true,
+			roles : ['User','Employer','Super_Admin','Admin']
+		},
 		
+		// for viewing the list of friend request user has received
+		"/user/friendRequest" : {
+			templateUrl : 'app/components/friends/friendRequests.html',
+			controller : 'friendController',
+			controllerAs : 'friendCtrl',
+			requireLogin : true,
+			roles : ['User','Employer','Super_Admin','Admin']
+		},
 		
 		// for Navigating Error page
 		"/error" : {

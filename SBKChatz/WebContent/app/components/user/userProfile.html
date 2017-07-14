@@ -55,7 +55,7 @@
 		
 		<div class="row" ng-if="userCtrl.user.user.id != user.id">
 			<div class="col m6">
-				<a class="waves-effect waves-light btn">Add Friend</a>			
+				<a class="waves-effect waves-light btn">BEFRIEND</a>			
 			</div>
 			<div class="col m6">
 				<a class="waves-effect waves-light btn">Message</a>			
@@ -64,7 +64,7 @@
 		
 		<!-- User's Friend List Shown here -->
 		
-		<div style="margin-top: 20px;" ng-int="userCtrl.fetchMyFriends()">
+		<div style="margin-top: 20px;" ng-init="userCtrl.fetchMyFriends()">
 			<div class="row">
 				<div class="col m8">
 					<span class="card-title right-align">Friends (Total {{userCtrl.friendsCount}})<a></a></span>
@@ -112,7 +112,7 @@
 						<div class="row">
 							<div class="col m6">
 								<div style="margin-left: 20px; margin-top: 20px;">
-									<h6>Name: {{userCtrl.user.user.firstname}} {{userCtrl.user.user.lastname}}</h6>
+									<h6>Name: {{userCtrl.user.user.firstName}} {{userCtrl.user.user.lastName}}</h6>
 									<h6>Username: {{userCtrl.user.user.username}}</h6>
 									<h6>Birthdate: {{userCtrl.user.user.birthDate | date: 'MMMM d,y'}}</h6>
 									<h6 ng-if="userCtrl.user.user.gender == 'M'">Gender: Male</h6>

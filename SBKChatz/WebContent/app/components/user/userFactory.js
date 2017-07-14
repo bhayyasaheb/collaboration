@@ -127,10 +127,10 @@ user.factory('userFactory',['$http','$q','$rootScope','$routeParams',function($h
 	// Function to fetch User Friends
 	
 	function fetchMyFriends() {
-		
+		debugger;
 		var deferred = $q.defer();
 	
-		var userId = $routeParams.id;
+		var userId = user.id;
 		
 		$http.get(url+'/my/friends/'+userId)
 			.then(function(response){
