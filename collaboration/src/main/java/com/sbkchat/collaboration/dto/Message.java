@@ -5,6 +5,10 @@ public class Message {
 	private long id;
 	
 	private String message;
+	
+	public Message() {
+		
+	}
 
 	public Message(long id, String message) {
 		super();

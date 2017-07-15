@@ -249,6 +249,15 @@ window.routes = {
 			roles : ['User','Employer','Super_Admin','Admin']
 		},
 		
+		// for chatting with friend
+		"/chat/:id/:username" : {
+			templateUrl : 'app/components/chat/chat.html',
+			controller : 'chatController',
+			controllerAs : 'chatCtrl',
+			requireLogin : true,
+			roles : ['User','Employer','Super_Admin','Admin']
+		},
+		
 		// for Navigating Error page
 		"/error" : {
 			templateUrl : 'app/components/authentication/error.html',

@@ -10,5 +10,6 @@ var sbkchat = angular.module('sbkchat',[
 	'jobModule',
 	'adminModule',
 	'requestModule',
-	'friendModule'
+	'friendModule',
+	'chatModule'
 ]);
