@@ -106,6 +106,26 @@ var setting = function() {
 	
 	//---- Future Coding
 	
+	  /*$('.carousel').carousel({dist:0});
+      window.setInterval(function(){$('.carousel').carousel('next')},2000)*/
+	 $('.carousel').carousel();
+	
+	/*$('.carousel').carousel({
+	    padding: 200    
+	});
+	autoplay()   
+	function autoplay() {
+	    $('.carousel').carousel('next');
+	    setTimeout(autoplay, 4500);
+	}*/
+	
+	
+	/*$('.carousel').carousel({
+		  dist: 0,
+		  shift: 0,
+		  padding: 20,
+		  interval: 100
+		});*/
 	
 }
 

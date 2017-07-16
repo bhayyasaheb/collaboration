@@ -28,7 +28,7 @@
 			
 			<!-- Manage button for admin -->
 			
-			<li style="margin-left: 400px">
+			<li style="margin-left: 200px">
 				<div style="display: inline;">
 					<a class='dropdown-button' data-activates='manage' ng-if="user.role == 'Super_Admin' || user.role == 'Admin'">Manage</a>
 					
@@ -71,10 +71,11 @@
 			<li>
 				<a href="#!/user" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="home"><i class="material-icons" style="display: inline;">home</i></a>
 			</li>
-			<!-- <li>
+			
+			<li>
 				<div style="display: inline;">
 					<a class='dropdown-button' data-activates='blogs'>Blogs</a>
-					Dropdown Structure
+					<!-- Dropdown Structure -->
 					<ul id='blogs' class="dropdown-content">
 						<li><a href="#!/blog/new"><i class="material-icons">mode_edit</i>Create</a></li>
 						<li><a href="#!/blogs/all"><i class="material-icons">list</i>View All</a></li>
@@ -84,9 +85,9 @@
 			<li>
 				<div style="display: inline;">
 					<a class='dropdown-button' data-activates='forums'>Forums</a>
-					Dropdown Structure
+					<!-- Dropdown Structure -->
 					<ul id='forums' class="dropdown-content">
-						<li ng-if="user.role != 'User' && user.role != 'Employer'"><a href="#!/forum/new">Create</a></li>
+						<li ng-if="user.role != 'User' && user.role != 'Employer'"><a href="#!/forum/new"><i class="material-icons">mode_edit</i>Create</a></li>
 						<li><a href="#!/forum/list"><i class="material-icons">list</i>View All</a></li>
 					</ul>
 				</div>
@@ -94,7 +95,7 @@
 			<li>
 				<div style="display: inline;">
 					<a class='dropdown-button' data-activates='jobs'>Jobs</a>
-					Dropdown Structure
+					<!-- Dropdown Structure -->
 					<ul id='jobs' class="dropdown-content">
 						<li ng-if="user.role != 'User'"><a href="#!/job/new"><i class="material-icons">mode_edit</i>Create</a></li>
 						<li><a href="#!/jobs/list"><i class="material-icons">list</i>View All</a></li>
@@ -104,17 +105,17 @@
 			<li>
 				<div style="display: inline;">
 					<a class='dropdown-button' data-activates='events'>Events</a>
-					Dropdown Structure
+					<!-- Dropdown Structure -->
 					<ul id='events' class="dropdown-content">
 						<li ng-if="user.role != 'User'"><a href="#!/event/new"><i class="material-icons">mode_edit</i>Create</a></li>
 						<li><a href="#!/events/list"><i class="material-icons">list</i>View All</a></li>
 					</ul>
 						
 				</div>
-			</li> -->
-			<li>
-				<a href="#!/user/friendRequest">Friend Requests</a>
 			</li>
+			<!-- <li>
+				<a href="#!/user/friendRequest">Friend Requests</a>
+			</li> -->
 			<!-- <li>
 				<div style="display: inline;">
 					<a class='news-button' data-activates='new'>What's new?</a>
@@ -130,6 +131,8 @@
 				</div>
 			</li> -->
 			
+			
+			
 			<!-- Navbar Display of Profile and Settings -->
 			
 			<li style="margin-right: 20px;">
@@ -142,6 +145,7 @@
 				<ul id='profile' class='dropdown-content' style="width: 100px; position: absolute; left: 11500px; width: 200px;">
 					<li><a href="#!"> <big>Logged in as:</big> <br> <small>{{user.username}}</small> </a></li>
 					<li><a href="#!/user/profile/{{user.id}}">View Profile</a></li>
+					<li><a href="#!/user/friendRequest">Friend Requests</a></li>
 					<li class="divider"></li>
 					<li><a href="#!" ng-click="logout()">Log Out</a></li>				
 				</ul>
@@ -191,7 +195,7 @@
 	<li><a href="#!">Work Shop</a></li>
 	
 	<li><a href="#!/blog/new"><i class="material-icons">description</i>Create new Blog</a></li>
-	<li ng-if="user.role != 'User' && user.role != 'Employer'"><a href="#!/forum/list"><i class="material-icons">question_answer</i>Create new Forums</a></li>
+	<li ng-if="user.role != 'User' && user.role != 'Employer'"><a href="#!/forum/new"><i class="material-icons">question_answer</i>Create new Forums</a></li>
 	
 	
 	<!-- For Super Admin, Admin and Employers -->		

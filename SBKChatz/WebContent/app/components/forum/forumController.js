@@ -73,8 +73,11 @@ forum.controller('forumController',
 				forumFactory.addForum(self.Forum)
 					.then(function(forum){
 							self.Forum = forum;
-							$route.reload();
-							$('#category').modal('close');
+							/*$route.reload();*/
+							var fId = self.Forum.id;
+							$location.path('/forum/'+fId);
+							Materialize.toast('Forum Topic Created Sucessfully!',2000);
+							/*$('#category').modal('close');*/
 							console.log('Sucessfully Added Forum Categories!');
 						},
 					function(errResponse){

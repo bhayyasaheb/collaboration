@@ -40,21 +40,22 @@
  		<div ng-include="'app/shared/rightSide.html'"></div>
  		
  		<div style="margin-top: 25px auto 0 auto;" ng-if="user.role != 'User' && user.role != 'Employer' ">
- 			<button data-target="category" class="waves-effect waves-light btn-large"><i class="material-icons">question_answer</i>CREATE FORUM</button>
+ 			<a href="#!/forum/new" class="waves-effect waves-light btn-large"><i class="material-icons">question_answer</i>CREATE FORUM</a>
+ 			<!-- <button data-target="category" class="waves-effect waves-light btn-large"><i class="material-icons">question_answer</i>CREATE FORUM</button> -->
  		</div>
  		
- 		<div id="category" class="modal">
+ 		<!-- <div id="category" class="modal">
  			<div class="modal-content">
  				<h4>Create New Forum</h4>
  				
- 				<!-- <div class="row"> -->
+ 				<div class="row">
  				
  					<form id="newForum" name="newForum" class="col s12" ng-submit="forCtrl.addForum()"  style="padding-bottom: 40px;">
  						
- 						<!-- Forum Id Hidden  because it is  auto generated-->
+ 						Forum Id Hidden  because it is  auto generated
  						<input type="hidden" ng-model="forCtrl.Forum.id"/>
  						
- 						<!--Forum category name will be come here  -->
+ 						Forum category name will be come here 
  						<div class="row">
  							<div class="input-field col s12">
  								<input id="name" type="text" class="validate" data-length="50" ng-model="forCtrl.Forum.name" />
@@ -62,7 +63,7 @@
  							</div>
  						</div>
  						
- 						<!-- Forum Category description will be come here -->
+ 						Forum Category description will be come here
  						<div class="row">
  							<div class="input-field col s12">
  								<textarea id="description" class="materialize-textarea" ng-model="forCtrl.Forum.description"></textarea>
@@ -70,17 +71,17 @@
  							</div>
  						</div>
  						
- 						<!-- Submit Button will be come Here -->
+ 						Submit Button will be come Here
  						<div class="row"> 
  							<button type="submit" class="waves-effect waves-light btn-large" style="margin-top: 10px; left: 10px;">Create</button>
  						</div>
  						
  					</form>	
  					
- 				<!-- </div> -->
+ 				</div>
  				
  			</div>
- 		</div>
+ 		</div> -->
  			
  	</div>
  	

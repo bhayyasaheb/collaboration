@@ -1,5 +1,5 @@
 <div style="margin-left: 25px;" ng-init="friendCtrl.fetchRequest()">
-	<h5>You have  {{friendCtrl.friendRequestsCount}} New Friend Requests</h5>
+	<h5 ng-if="(friendCtrl.friendRequestsCount != 0)">You have  {{friendCtrl.friendRequestsCount}} New Friend Requests</h5>
 </div>
 
 <hr style="width: 1300px;">
@@ -31,5 +31,13 @@
 		</div>
 	</div>
 </div>
+
+		<!-- If no Friends Request Are Available -->
+		
+		<div ng-if="(friendCtrl.friendRequestsCount == 0)">
+			<div class="card hoverable" style="height: 200px;">
+				<h3 style="padding-top: 75px; padding-left: 250px;">No New Friends Request Yet now!</h3>
+			</div>
+		</div>
 
 </div>

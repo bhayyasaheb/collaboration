@@ -27,6 +27,15 @@ window.routes = {
 			roles : ['User','Employer','Admin','Super_Admin']
 		},
 		
+		// for TOP 5 BLOGS
+		/*"/top5/blogs" : {
+			templateUrl : 'app/components/user/top5Blogs.html',
+			controller : 'userController',
+			controllerAs : 'userCtrl',
+			requireLogin : true,
+			roles : ['User','Employer','Admin','Super_Admin']
+		},*/
+		
 		
 		// for assigning role to the user and to update or delete user
 		"/manage/users" : {
@@ -91,14 +100,14 @@ window.routes = {
 			roles : ['Super_Admin','Admin']
 		},
 		
-		/*// For creating new forum
+		// For creating new forum
 		"/forum/new" : {
 			templateUrl : 'app/components/forum/newForum.html',
 			controller : 'forumController',
 			controllerAs : 'forCtrl',
 			requireLogin : true,
 			roles : ['Super_Admin','Admin']
-		},*/
+		},
 		
 		// For viewing list of forums and adding a new one
 		"/forum/list" : {
