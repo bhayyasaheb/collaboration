@@ -192,5 +192,21 @@ event.controller('eventController',
 					return deferred.promise;
 				}
 				
+				
+				self.deleteEvent = function() {
+					
+					var eventid = $routeParams.id;
+					
+					blogFactory.deleteEvent(eventid)
+						.then(function(event){
+								console.log('sucessfully deleted Event!');
+								$route.reload();
+							},
+						function(errResponse){
+								console.error('Failed to delete Event!');
+							}	
+						);
+				}
+				
 			}
 		]);

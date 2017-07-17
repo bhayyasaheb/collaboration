@@ -23,4 +23,6 @@ public interface ForumPostDAO {
 	
 	// list of forum post by forum id
 	List<ForumPost> list(int id);
+	
+	
 }

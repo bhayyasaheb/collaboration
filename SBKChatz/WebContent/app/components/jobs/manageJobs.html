@@ -43,7 +43,7 @@
 						<b>Published On:</b> &nbsp; &nbsp; {{job.postDate | date : 'MMMM d, y'}}
 						<div class="center-align" style="margin-top: 10px;">
 							<button type="submit" class="waves-effect waves-light btn-large green"><i class="material-icons">mode_edit</i>EDIT</button>
-							<button type="submit" class="waves-effect waves-light btn-large red"><i class="material-icons">delete</i>DELETE</button>
+							<button type="submit" ng-click="jobCtrl.deleteJob(job.id)" class="waves-effect waves-light btn-large red"><i class="material-icons">delete</i>DELETE</button>
 						</div>
 					</div>
 				</div>

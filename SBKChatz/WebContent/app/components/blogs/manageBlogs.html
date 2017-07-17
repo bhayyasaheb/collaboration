@@ -25,7 +25,7 @@
                         <td>{{blog.createDate | date: 'MMMM d, y'}}</td>
                        <td> 
                             <a class="waves-effect waves-light btn tooltipped green" data-position="bottom" data-delay="50" data-tooltip="Edit"><i class="material-icons">mode_edit</i></a>
-                            <a class="waves-effect waves-light btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
+                            <a ng-click="blogCtrl.deleteBlog(blog.id)" class="waves-effect waves-light btn tooltipped red" data-position="bottom" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a>
                         </td>
                     </tr>
                 </tbody>

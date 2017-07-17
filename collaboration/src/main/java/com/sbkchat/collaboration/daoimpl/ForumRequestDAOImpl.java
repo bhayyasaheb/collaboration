@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sbkchat.collaboration.dao.ForumRequestDAO;
+import com.sbkchat.collaboration.dto.Forum;
 import com.sbkchat.collaboration.dto.ForumRequest;
 
 @Repository("forumRequestDAO")
@@ -81,4 +82,5 @@ public class ForumRequestDAOImpl implements ForumRequestDAO {
 		return query.list();
 	}
 
+	
 }

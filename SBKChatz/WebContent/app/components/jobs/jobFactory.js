@@ -10,7 +10,8 @@ job.factory('jobFactory',['$http','$q','$routeParams', function($http,$q,$routeP
 		joblist : joblist,
 		viewJob : viewJob,
 		applyJob : applyJob,
-		getAppliedUsers : getAppliedUsers
+		getAppliedUsers : getAppliedUsers,
+		deleteJob : deleteJob
 	};
 	
 	
@@ -105,5 +106,23 @@ job.factory('jobFactory',['$http','$q','$routeParams', function($http,$q,$routeP
 		return deferred.promise;
 	}
 	
+	
+	// function to delete Job
+	function deleteJob(jobid) {
+		
+		var deferred = $q.defer();
+		
+		$http.post(url + '/delete/job/' + jobid)
+			.then(function(response){
+					deferred.resolve(response.data);
+					console.log('In adminFactory deleteJob Response!');
+				},
+			function(errResponse){
+					deferred.reject(errReponse.data);
+					console.error('In adminFactory deleteJob errResponse!');
+				}	
+			);
+		return deferred.promise;
+	}
 	
 }]);

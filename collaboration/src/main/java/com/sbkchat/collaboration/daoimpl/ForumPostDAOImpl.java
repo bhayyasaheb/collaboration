@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sbkchat.collaboration.dao.ForumPostDAO;
+import com.sbkchat.collaboration.dto.Forum;
 import com.sbkchat.collaboration.dto.ForumPost;
 
 @Repository("forumPostDAO")
@@ -72,5 +73,7 @@ public class ForumPostDAOImpl implements ForumPostDAO {
 		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
 		return query.list();
 	}
+
+	
 
 }

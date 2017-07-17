@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sbkchat.collaboration.dao.BlogCommentDAO;
+import com.sbkchat.collaboration.dto.Blog;
 import com.sbkchat.collaboration.dto.BlogComment;
 
 @Repository("blogCommentDAO")
@@ -73,5 +74,19 @@ public class BlogCommentDAOImpl implements BlogCommentDAO{
 		Query query = sessionFactory.getCurrentSession().createQuery(selectQuery);
 		return query.list();
 	}
+
+	@Override
+	public boolean deleteCommentByBlogId(Blog blogId) {
+		
+		try {
+			sessionFactory.getCurrentSession().delete(blogId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
 
 }

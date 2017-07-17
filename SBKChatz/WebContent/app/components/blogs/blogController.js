@@ -154,4 +154,20 @@ blog.controller('blogController',
 			}
 			
 			
+			self.deleteBlog = function() {
+				
+				var blogid = $routeParams.id;
+				
+				blogFactory.deleteBlog(blogid)
+					.then(function(blog){
+							console.log('sucessfully deleted blog!');
+							$route.reload();
+						},
+					function(errResponse){
+							console.error('Failed to delete blog!');
+						}	
+					);
+			}
+			
+			
 		}]);

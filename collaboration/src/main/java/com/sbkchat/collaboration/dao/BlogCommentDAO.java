@@ -2,6 +2,7 @@ package com.sbkchat.collaboration.dao;
 
 import java.util.List;
 
+import com.sbkchat.collaboration.dto.Blog;
 import com.sbkchat.collaboration.dto.BlogComment;
 
 public interface BlogCommentDAO {
@@ -23,4 +24,7 @@ public interface BlogCommentDAO {
 	
 	// get list of Blog comment by blog id
 	List<BlogComment> list(int id);
+	
+	// delete blog comment by blog id
+	boolean deleteCommentByBlogId(Blog blogId);
 }

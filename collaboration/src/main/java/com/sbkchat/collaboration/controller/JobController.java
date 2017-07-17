@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sbkchat.collaboration.dao.JobAppliedDAO;
 import com.sbkchat.collaboration.dao.JobDAO;
 import com.sbkchat.collaboration.dao.UserDAO;
+import com.sbkchat.collaboration.dto.Blog;
 import com.sbkchat.collaboration.dto.Job;
 import com.sbkchat.collaboration.dto.JobApplied;
 import com.sbkchat.collaboration.dto.JobModel;
@@ -191,6 +192,15 @@ public class JobController {
 		return new ResponseEntity<List<JobApplied>>(appliedJob,HttpStatus.OK);
 	}
 	
-	
+	// method to update job
+	@RequestMapping(value="/job/update/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Job> updateJob(@PathVariable int id, @RequestBody Job job)
+	{
+		Job currentJob = jobDAO.getJob(id);
+		currentJob.setStatus("APPROVED");
+		jobDAO.updateJob(currentJob);
+		
+		return new ResponseEntity<Job>(currentJob,HttpStatus.OK);
+	}
 }
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,7 +34,8 @@ public class AdminController {
 
 	@Autowired
 	private JobDAO jobDAO;
-
+	
+	
 	// method for fetching the approved user list
 
 	@RequestMapping(value = "/user/manage/list", method = RequestMethod.GET)
@@ -93,6 +95,55 @@ public class AdminController {
 		
 		return new ResponseEntity<List<Events>>(eventList,HttpStatus.OK);
 	}
+	
+	
+	// method for delete blog and blog comment
+	@RequestMapping(value="/delete/blog/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Blog>  deleteBlog(@PathVariable("id") int id)
+	{	
+		System.out.println("Starting of the method delete Blog");
+		Blog blog = blogDAO.getBlog(id);
+		
+		blogDAO.deleteBlog(blog);
+		
+		return new ResponseEntity<Blog>(blog,HttpStatus.OK);
+		
+	}
+	
+	//method to delete forum and Forum post
+	/*@RequestMapping(value="/delete/forum/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Forum>  deleteForum(@PathVariable("id") int id)
+	{	
+		System.out.println("Starting of the method delete Forum");
+		Forum forum = forumDAO.getForum(id);
+		
+		forumDAO.deleteForum(forum);
+		
+		return new ResponseEntity<Forum>(forum,HttpStatus.OK);
+		
+	}*/
+	
+	// method to delete events and eventjoined
+	@RequestMapping(value="delete/event/{id}",method=RequestMethod.DELETE)
+	public ResponseEntity<Events> deleteEvent(@PathVariable("id") int id)
+	{
+		Events event = eventDAO.getEvent(id);
+		eventDAO.deleteEvent(event);
+		
+		return new ResponseEntity<Events>(event,HttpStatus.OK);
+	}
+
+	
+	// method to delete job and job applied
+		@RequestMapping(value="delete/job/{id}",method=RequestMethod.DELETE)
+		public ResponseEntity<Job> deleteJob(@PathVariable("id") int id)
+		{
+			Job job = jobDAO.getJob(id);
+			jobDAO.deleteJob(job);
+			
+			return new ResponseEntity<Job>(job,HttpStatus.OK);
+		}
+	
 }
 
 

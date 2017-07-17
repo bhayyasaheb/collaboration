@@ -26,7 +26,8 @@ blog.factory('blogFactory',['$http','$q',function ($http,$q){
 		viewBlog : viewBlog,
 		bloglist : bloglist,
 		blogCommentlist : blogCommentlist,
-		likes : likes
+		likes : likes,
+		deleteBlog : deleteBlog
 	};
 	
 	// Function to add the blog
@@ -120,5 +121,24 @@ blog.factory('blogFactory',['$http','$q',function ($http,$q){
 		);
 		return deferred.promise;
 	}
+	
+	// function to delete Blog
+	function deleteBlog(blogid) {
+		
+		var deferred = $q.defer();
+		
+		$http.post(url + '/delete/blog/' +blogid)
+			.then(function(response){
+					deferred.resolve(response.data);
+					console.log('In adminFactory deleteBlog Response!');
+				},
+			function(errResponse){
+					deferred.reject(errReponse.data);
+					console.error('In adminFactory deleteBlog errResponse!');
+				}	
+			);
+		return deferred.promise;
+	}
+
 	
 }]);

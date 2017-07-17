@@ -18,6 +18,7 @@ import com.sbkchat.collaboration.dao.ForumDAO;
 import com.sbkchat.collaboration.dao.ForumPostDAO;
 import com.sbkchat.collaboration.dao.ForumRequestDAO;
 import com.sbkchat.collaboration.dao.UserDAO;
+import com.sbkchat.collaboration.dto.Blog;
 import com.sbkchat.collaboration.dto.Forum;
 import com.sbkchat.collaboration.dto.ForumModel;
 import com.sbkchat.collaboration.dto.ForumPost;
@@ -148,6 +149,19 @@ public class ForumController {
 		
 		return new ResponseEntity<List<ForumPost>>(forumPosts,HttpStatus.OK);
 	}
+	
+	// method to update forum
+	@RequestMapping(value="/forum/update/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Forum> updateForum(@PathVariable int id, @RequestBody Forum forum)
+	{
+		Forum currentForum = forumDAO.getForum(id);
+		
+		currentForum.setStatus("APPROVED");
+		forumDAO.updateForum(currentForum);
+		
+		return new ResponseEntity<Forum>(currentForum,HttpStatus.OK);
+	}
+	
 }
 
 

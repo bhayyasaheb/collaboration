@@ -10,7 +10,8 @@ event.factory('eventFactory',['$http','$q','$routeParams', function($http,$q,$ro
 		eventlist : eventlist,
 		joinEvent : joinEvent,
 		viewEvent : viewEvent,
-		getParticipatedUsers : getParticipatedUsers
+		getParticipatedUsers : getParticipatedUsers,
+		deleteEvent : deleteEvent
 	};
 	
 	// Function to add Event
@@ -108,6 +109,23 @@ event.factory('eventFactory',['$http','$q','$routeParams', function($http,$q,$ro
 		
 	}	
 	
+	// function to delete Event
+	function deleteEvent(eventid) {
+		
+		var deferred = $q.defer();
+		
+		$http.post(url + '/delete/event/' + eventid)
+			.then(function(response){
+					deferred.resolve(response.data);
+					console.log('In adminFactory deleteEvent Response!');
+				},
+			function(errResponse){
+					deferred.reject(errReponse.data);
+					console.error('In adminFactory deleteEvent errResponse!');
+				}	
+			);
+		return deferred.promise;
+	}
 	
 	
 	

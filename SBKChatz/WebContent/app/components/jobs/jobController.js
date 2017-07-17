@@ -165,4 +165,21 @@ job.controller('jobController',['jobFactory','$timeout','$routeParams','$locatio
 	}
 	
 	
+	
+	self.deleteJob = function() {
+		
+		var jobid = $routeParams.id;
+		
+		blogFactory.deleteJob(jobid)
+			.then(function(job){
+					console.log('sucessfully deleted Job!');
+					$route.reload();
+				},
+			function(errResponse){
+					console.error('Failed to delete Job!');
+				}	
+			);
+	}
+	
+	
 }]);

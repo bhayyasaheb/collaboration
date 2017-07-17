@@ -20,6 +20,7 @@ import com.sbkchat.collaboration.dao.UserDAO;
 import com.sbkchat.collaboration.dto.EventJoined;
 import com.sbkchat.collaboration.dto.EventModel;
 import com.sbkchat.collaboration.dto.Events;
+import com.sbkchat.collaboration.dto.Job;
 import com.sbkchat.collaboration.dto.User;
 
 @RestController
@@ -170,5 +171,14 @@ public class EventController {
 		return new ResponseEntity<List<EventJoined>>(eventJoined, HttpStatus.OK);
 	}
 	
-	
+	// method to update event
+	@RequestMapping(value="/event/update/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<Events> updateEvent(@PathVariable int id, @RequestBody Job job)
+	{
+		Events currentEvent = eventDAO.getEvent(id);
+		currentEvent.setStatus("APPROVED");
+		eventDAO.updateEvent(currentEvent);
+		
+		return new ResponseEntity<Events>(currentEvent,HttpStatus.OK);
+	}
 }

@@ -2,6 +2,7 @@ package com.sbkchat.collaboration.dao;
 
 import java.util.List;
 
+import com.sbkchat.collaboration.dto.Forum;
 import com.sbkchat.collaboration.dto.ForumRequest;
 
 public interface ForumRequestDAO {
@@ -26,4 +27,5 @@ public interface ForumRequestDAO {
 	
 	// list of forum request by status
 	List<ForumRequest> list(String status);
+	
 }
