@@ -108,7 +108,7 @@ var setting = function() {
 	
 	  /*$('.carousel').carousel({dist:0});
       window.setInterval(function(){$('.carousel').carousel('next')},2000)*/
-	 $('.carousel').carousel();
+	 /*$('.carousel').carousel();*/
 	
 	/*$('.carousel').carousel({
 	    padding: 200    
@@ -126,6 +126,8 @@ var setting = function() {
 		  padding: 20,
 		  interval: 100
 		});*/
+	 
+	 $('.slider').slider();
 	
 }
 
